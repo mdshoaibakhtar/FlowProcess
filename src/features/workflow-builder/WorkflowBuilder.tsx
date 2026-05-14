@@ -46,8 +46,8 @@ const initialEdges: Edge[] = [
   },
 ];
 
-function WorkflowBuilder() {
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+const WorkflowBuilder = () => {
+  const [nodes] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
   const onConnect = (params: Connection) => {
@@ -67,7 +67,7 @@ function WorkflowBuilder() {
       <ReactFlow
         nodes={nodes}
         edges={edges}
-        onNodesChange={onNodesChange}
+        // onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
         fitView
@@ -78,6 +78,6 @@ function WorkflowBuilder() {
       </ReactFlow>
     </div>
   );
-}
+};
 
 export default WorkflowBuilder;
