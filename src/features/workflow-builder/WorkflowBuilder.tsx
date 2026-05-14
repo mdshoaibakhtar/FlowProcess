@@ -63,11 +63,10 @@ const WorkflowBuilder = () => {
   };
 
   return (
-    <div className='h-screen w-full bg-slate-50'>
+    <div className='h-[72vh] min-h-[540px] w-full overflow-hidden rounded-2xl border border-(--app-border) bg-(--surface-primary)'>
       <ReactFlow
         nodes={nodes}
         edges={edges}
-        // onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
         onConnect={onConnect}
         fitView

@@ -1,25 +1,42 @@
-import { ClipboardList, Inbox, LayoutDashboard, type LucideIcon, Workflow, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { NavLink } from 'react-router-dom';
+import { AppIcon } from '../../config/iconRegistry';
+import type { FooterAction, NavigationItem, RoleShellConfig } from '../../types/app';
 
 type SidebarProps = {
   isOpen: boolean;
+  isCollapsed: boolean;
+  roleConfig: RoleShellConfig;
   onClose: () => void;
+  onToggleCollapse: () => void;
+  onLogout: () => void;
 };
 
-type MenuItem = {
-  label: string;
-  path: string;
-  icon: LucideIcon;
+const getInitials = (name: string) => {
+  return name
+    .split(' ')
+    .map((part) => part[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase();
 };
 
-const menuItems: MenuItem[] = [
-  { label: 'Dashboard', path: '/', icon: LayoutDashboard },
-  { label: 'Workflows', path: '/workflows', icon: Workflow },
-  { label: 'Inbox', path: '/inbox', icon: Inbox },
-  { label: 'Requests', path: '/requests', icon: ClipboardList },
-];
+const Sidebar = ({
+  isOpen,
+  isCollapsed,
+  roleConfig,
+  onClose,
+  onToggleCollapse,
+  onLogout,
+}: SidebarProps) => {
+  const navigationItems = roleConfig.navigation.filter((item) =>
+    item.roles.includes(roleConfig.role),
+  );
+  const footerActions = roleConfig.footerActions.filter((item) =>
+    item.roles.includes(roleConfig.role),
+  );
+  const userInitials = getInitials(roleConfig.user.name);
 
-const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
   return (
     <>
       <div
@@ -31,53 +48,134 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
       />
 
       <aside
-        className={`fixed inset-y-0 left-0 z-40 w-72 max-w-[85vw] border-r border-slate-200 bg-white p-5 shadow-xl transition-transform duration-300 md:static md:z-auto md:w-64 md:max-w-none md:translate-x-0 md:shadow-none ${
+        className={`fixed inset-y-0 left-0 z-40 flex h-full w-72 max-w-[85vw] flex-col border-r border-(--app-border) bg-(--surface-primary) px-3 py-4 shadow-xl transition-[width,transform] duration-300 md:max-w-none md:translate-x-0 md:shadow-none ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
-        }`}
+        } ${isCollapsed ? 'md:w-20' : 'md:w-72'}`}
         aria-label='Sidebar Navigation'
       >
-        <div className='mb-8 flex items-center justify-between'>
+        <button
+          type='button'
+          onClick={onToggleCollapse}
+          className='absolute -right-3 top-10 z-20 hidden size-6 items-center justify-center rounded-full border border-(--app-border) bg-(--surface-primary) text-(--muted-text) shadow-sm transition hover:bg-(--surface-secondary) hover:text-(--app-text) md:inline-flex'
+          aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+          title={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+        >
+          {isCollapsed ? <ChevronRight className='size-4' /> : <ChevronLeft className='size-4' />}
+        </button>
+
+        <div className='mb-6 flex h-14 items-center justify-between px-1'>
           <div>
-            <p className='text-xs font-semibold uppercase tracking-[0.2em] text-slate-400'>
-              Workspace
-            </p>
-            <h1 className='mt-1 text-xl font-semibold text-slate-900'>Processflow</h1>
+            {isCollapsed ? (
+              <div className='flex size-9 items-center justify-center rounded-xl bg-(--accent-soft) text-sm font-semibold text-(--accent-strong)'>
+                {roleConfig.workspaceName.slice(0, 2).toUpperCase()}
+              </div>
+            ) : (
+              <>
+                <p className='text-xs font-semibold uppercase tracking-[0.2em] text-(--muted-text)'>
+                  {roleConfig.workspaceTagline}
+                </p>
+                <h1 className='mt-1 text-xl font-semibold text-(--app-text)'>
+                  {roleConfig.workspaceName}
+                </h1>
+              </>
+            )}
           </div>
 
-          <button
-            type='button'
-            onClick={onClose}
-            className='rounded-lg p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-800 md:hidden'
-            aria-label='Close sidebar'
-          >
-            <X className='size-5' />
-          </button>
+          <div className='flex items-center'>
+            <button
+              type='button'
+              onClick={onClose}
+              className='rounded-lg p-2 text-(--muted-text) transition hover:bg-(--surface-muted) hover:text-(--app-text) md:hidden'
+              aria-label='Close sidebar'
+            >
+              <ChevronLeft className='size-4' />
+            </button>
+          </div>
         </div>
 
         <nav className='space-y-1'>
-          {menuItems.map((item) => {
-            const Icon = item.icon;
-
-            return (
-              <NavLink
-                key={item.path}
-                to={item.path}
-                end={item.path === '/'}
-                onClick={onClose}
-                className={({ isActive }) =>
-                  `group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
-                    isActive
-                      ? 'bg-slate-900 text-white shadow-sm'
-                      : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
-                  }`
-                }
-              >
-                <Icon className='size-4 shrink-0' />
-                <span>{item.label}</span>
-              </NavLink>
-            );
-          })}
+          {navigationItems.map((item: NavigationItem) => (
+            <NavLink
+              key={item.id}
+              to={item.path}
+              end={item.path === '/'}
+              onClick={onClose}
+              title={isCollapsed ? item.label : undefined}
+              className={({ isActive }) =>
+                `group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
+                  isActive
+                    ? 'bg-(--accent-soft) text-(--accent-strong)'
+                    : 'text-(--muted-text) hover:bg-(--surface-muted) hover:text-(--app-text)'
+                }`
+              }
+            >
+              <AppIcon name={item.icon} className='size-4 shrink-0' />
+              {!isCollapsed && <span>{item.label}</span>}
+            </NavLink>
+          ))}
         </nav>
+
+        <div className='mt-auto border-t border-(--app-border) pt-4'>
+          <div
+            className='mb-4 flex items-center gap-3 rounded-xl border border-(--app-border) bg-(--surface-secondary) p-2.5'
+            title={isCollapsed ? roleConfig.user.name : undefined}
+          >
+            <div className='flex size-9 shrink-0 items-center justify-center rounded-lg bg-(--accent-soft) text-xs font-semibold text-(--accent-strong)'>
+              {userInitials}
+            </div>
+
+            {!isCollapsed && (
+              <div className='min-w-0'>
+                <p className='truncate text-sm font-semibold text-(--app-text)'>
+                  {roleConfig.user.name}
+                </p>
+                <p className='truncate text-xs text-(--muted-text)'>{roleConfig.user.email}</p>
+              </div>
+            )}
+          </div>
+
+          <div className='space-y-1'>
+            {footerActions.map((action: FooterAction) => {
+              const sharedClassName = `flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
+                action.variant === 'danger'
+                  ? 'text-(--danger-strong) hover:bg-(--danger-soft) hover:text-(--danger-strong)'
+                  : 'text-(--muted-text) hover:bg-(--surface-muted) hover:text-(--app-text)'
+              }`;
+
+              if (action.path) {
+                return (
+                  <NavLink
+                    key={action.id}
+                    to={action.path}
+                    onClick={onClose}
+                    title={isCollapsed ? action.label : undefined}
+                    className={({ isActive }) =>
+                      `${sharedClassName} ${
+                        isActive ? 'bg-(--accent-soft) text-(--accent-strong)' : ''
+                      }`
+                    }
+                  >
+                    <AppIcon name={action.icon} className='size-4 shrink-0' />
+                    {!isCollapsed && <span>{action.label}</span>}
+                  </NavLink>
+                );
+              }
+
+              return (
+                <button
+                  key={action.id}
+                  type='button'
+                  onClick={onLogout}
+                  title={isCollapsed ? action.label : undefined}
+                  className={sharedClassName}
+                >
+                  <AppIcon name={action.icon} className='size-4 shrink-0' />
+                  {!isCollapsed && <span>{action.label}</span>}
+                </button>
+              );
+            })}
+          </div>
+        </div>
       </aside>
     </>
   );

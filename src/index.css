@@ -1,11 +1,57 @@
 @import 'tailwindcss';
 
 :root {
+  --app-bg: #f1f5f9;
+  --app-text: #0f172a;
+  --muted-text: #64748b;
+  --app-border: #dbe3ee;
+  --surface-primary: #ffffff;
+  --surface-secondary: #f8fafc;
+  --surface-muted: #f1f5f9;
+  --accent-soft: #e0ebff;
+  --accent-strong: #1d4ed8;
+
+  --tone-blue-bg: #dbeafe;
+  --tone-blue-icon: #1d4ed8;
+  --tone-emerald-bg: #d1fae5;
+  --tone-emerald-icon: #047857;
+  --tone-amber-bg: #fef3c7;
+  --tone-amber-icon: #b45309;
+  --tone-rose-bg: #ffe4e6;
+  --tone-rose-icon: #be123c;
+  --danger-soft: #ffe4e6;
+  --danger-strong: #be123c;
+
   font-family: 'Inter', 'Segoe UI', sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+:root[data-theme='dark'] {
+  --app-bg: #0f172a;
+  --app-text: #e2e8f0;
+  --muted-text: #94a3b8;
+  --app-border: #243246;
+  --surface-primary: #111c2e;
+  --surface-secondary: #17263d;
+  --surface-muted: #1b2a3f;
+  --accent-soft: rgba(96, 165, 250, 0.24);
+  --accent-strong: #bfdbfe;
+
+  --tone-blue-bg: rgba(59, 130, 246, 0.22);
+  --tone-blue-icon: #93c5fd;
+  --tone-emerald-bg: rgba(16, 185, 129, 0.22);
+  --tone-emerald-icon: #6ee7b7;
+  --tone-amber-bg: rgba(245, 158, 11, 0.24);
+  --tone-amber-icon: #fcd34d;
+  --tone-rose-bg: rgba(244, 63, 94, 0.24);
+  --tone-rose-icon: #fda4af;
+  --danger-soft: rgba(244, 63, 94, 0.22);
+  --danger-strong: #fda4af;
+
+  color-scheme: dark;
 }
 
 * {
@@ -15,10 +61,31 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background-color: #f1f5f9;
-  color: #0f172a;
+  background-color: var(--app-bg);
+  color: var(--app-text);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 #root {
   min-height: 100vh;
+}
+
+:root.theme-transitioning,
+:root.theme-transitioning * {
+  transition:
+    background-color 220ms ease,
+    color 220ms ease,
+    border-color 220ms ease,
+    fill 220ms ease,
+    stroke 220ms ease,
+    box-shadow 220ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root.theme-transitioning,
+  :root.theme-transitioning * {
+    transition: none;
+  }
 }

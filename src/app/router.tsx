@@ -4,6 +4,10 @@ import Dashboard from '../pages/Dashboard';
 import Workflows from '../pages/Workflows';
 import Inbox from '../pages/Inbox';
 import Requests from '../pages/Requests';
+import Users from '../pages/Users';
+import Settings from '../pages/Settings';
+import ProfileSettings from '../pages/ProfileSettings';
+import KpiDetails from '../pages/KpiDetails';
 import Login from '../pages/Login';
 
 export const router = createBrowserRouter([
@@ -15,6 +19,10 @@ export const router = createBrowserRouter([
       { path: 'workflows', element: <Workflows /> },
       { path: 'inbox', element: <Inbox /> },
       { path: 'requests', element: <Requests /> },
+      { path: 'users', element: <Users /> },
+      { path: 'settings', element: <Settings /> },
+      { path: 'profile-settings', element: <ProfileSettings /> },
+      { path: 'kpi/:kpiId', element: <KpiDetails /> },
     ],
   },
   {
