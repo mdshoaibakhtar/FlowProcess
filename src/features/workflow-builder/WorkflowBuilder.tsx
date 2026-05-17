@@ -406,7 +406,7 @@ const WorkflowBuilder = () => {
     <div
       ref={containerRef}
       className={`flex w-full flex-col overflow-hidden border border-(--app-border) bg-(--surface-primary) ${
-        isFullscreen ? 'h-screen rounded-none' : 'h-[72vh] min-h-[560px] rounded-2xl'
+        isFullscreen ? 'h-screen rounded-none' : 'rounded-2xl h-[85vh] w-full'
       }`}
     >
       <WorkflowToolbar
@@ -422,7 +422,6 @@ const WorkflowBuilder = () => {
 
       <div className='flex min-h-0 flex-1'>
         <NodePalette onDragStart={handlePaletteDragStart} />
-
         <div ref={flowCanvasRef} className='min-h-0 min-w-0 flex-1'>
           <ReactFlow
             nodes={nodes}
