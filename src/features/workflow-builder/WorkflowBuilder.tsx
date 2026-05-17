@@ -53,6 +53,7 @@ const WorkflowBuilder = () => {
     WorkflowNodeData,
     Edge
   > | null>(null);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   const nodesRef = useRef(nodes);
   const edgesRef = useRef(edges);
@@ -324,6 +325,34 @@ const WorkflowBuilder = () => {
     recordSnapshot(nextNodes, edgesRef.current);
   }, [recordSnapshot, selectedNode, triggerNameDraft]);
 
+  useEffect(() => {
+    const updateTriggerPosition = () => {
+      if (!flowCanvasRef.current) return;
+
+      const canvasWidth = flowCanvasRef.current.clientWidth;
+
+      // Need to fix this indentation to prevent eslint-disable, otherwise it will cause issues with the rest of the code formatting
+      setNodes((currentNodes) =>
+        currentNodes.map((node) =>
+          node.id === TRIGGER_NODE_ID
+            ? {
+                ...node,
+                position: {
+                  x: canvasWidth / 2 - 100,
+                  y: 40,
+                },
+              }
+            : node,
+        ),
+      );
+    };
+
+    updateTriggerPosition();
+    window.addEventListener('resize', updateTriggerPosition);
+
+    return () => window.removeEventListener('resize', updateTriggerPosition);
+  }, []);
+
   const handleChangeTriggerName = useCallback(
     (value: string) => {
       if (!selectedNode || selectedNode.data.kind !== 'trigger') {
@@ -454,6 +483,8 @@ const WorkflowBuilder = () => {
           onApplyTriggerConfig={handleApplyTriggerConfig}
           onDragStart={handlePaletteDragStart}
           onCloseConfig={() => setSelectedNodeId(null)}
+          isCollapsed={isSidebarCollapsed}
+          onToggleCollapse={() => setIsSidebarCollapsed((prev) => !prev)}
         />
       </div>
     </div>

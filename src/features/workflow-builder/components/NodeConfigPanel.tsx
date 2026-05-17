@@ -1,4 +1,3 @@
-import { X } from 'lucide-react';
 import type { WorkflowNode } from '../types';
 
 type NodeConfigPanelProps = {
@@ -14,7 +13,6 @@ const NodeConfigPanel = ({
   triggerNameDraft,
   onChangeTriggerName,
   onApplyTriggerConfig,
-  onClose,
 }: NodeConfigPanelProps) => {
   const isTrigger = node.data.kind === 'trigger';
 
@@ -22,13 +20,6 @@ const NodeConfigPanel = ({
     <aside className='w-full shrink-0 h-full border-l border-(--app-border) bg-(--surface-primary) p-4'>
       <div className='mb-4 flex items-center justify-between'>
         <h3 className='text-sm font-semibold text-(--app-text)'>Node Configuration</h3>
-        <button
-          type='button'
-          onClick={onClose}
-          className='rounded-md p-1 text-(--muted-text) transition hover:bg-(--surface-muted)'
-        >
-          <X className='size-4' />
-        </button>
       </div>
 
       <div className='rounded-xl border border-(--app-border) bg-(--surface-secondary) p-3'>

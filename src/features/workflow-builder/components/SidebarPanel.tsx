@@ -1,6 +1,7 @@
+import { PanelLeftClose, PanelLeftOpen } from 'lucide-react';
 import NodePalette from './NodePalette';
-import type { WorkflowNode, WorkflowNodeKind } from '../types';
 import NodeConfigPanel from './NodeConfigPanel';
+import type { WorkflowNode, WorkflowNodeKind } from '../types';
 import type { DragEvent } from 'react';
 
 type SidebarPanelProps = {
@@ -8,11 +9,13 @@ type SidebarPanelProps = {
   triggerNameDraft: string;
   onChangeTriggerName: (value: string) => void;
   onApplyTriggerConfig: () => void;
+  onCloseConfig: () => void;
+  isCollapsed: boolean;
+  onToggleCollapse: () => void;
   onDragStart: (
     event: DragEvent<HTMLButtonElement>,
     kind: Exclude<WorkflowNodeKind, 'trigger'>,
   ) => void;
-  onCloseConfig: () => void;
 };
 
 const SidebarPanel = ({
@@ -22,19 +25,37 @@ const SidebarPanel = ({
   onApplyTriggerConfig,
   onDragStart,
   onCloseConfig,
+  isCollapsed,
+  onToggleCollapse,
 }: SidebarPanelProps) => {
   return (
-    <aside className='w-80 shrink-0 border-r border-(--app-border) bg-(--surface-primary)'>
-      {!selectedNode ? (
-        <NodePalette onDragStart={onDragStart} />
-      ) : (
-        <NodeConfigPanel
-          node={selectedNode}
-          triggerNameDraft={triggerNameDraft}
-          onChangeTriggerName={onChangeTriggerName}
-          onApplyTriggerConfig={onApplyTriggerConfig}
-          onClose={onCloseConfig}
-        />
+    <aside
+      className={`relative shrink-0 border-r border-(--app-border) bg-(--surface-primary) transition-all duration-300 ${
+        isCollapsed ? 'w-14' : 'w-80'
+      }`}
+    >
+      <button
+        type='button'
+        onClick={onToggleCollapse}
+        className='absolute right-3 top-3 z-10 rounded-md p-1 hover:bg-(--surface-muted)'
+      >
+        {isCollapsed ? <PanelLeftOpen className='size-4' /> : <PanelLeftClose className='size-4' />}
+      </button>
+
+      {!isCollapsed && (
+        <>
+          {!selectedNode ? (
+            <NodePalette onDragStart={onDragStart} />
+          ) : (
+            <NodeConfigPanel
+              node={selectedNode}
+              triggerNameDraft={triggerNameDraft}
+              onChangeTriggerName={onChangeTriggerName}
+              onApplyTriggerConfig={onApplyTriggerConfig}
+              onClose={onCloseConfig}
+            />
+          )}
+        </>
       )}
     </aside>
   );
