@@ -56,17 +56,19 @@ const Sidebar = ({
         <button
           type='button'
           onClick={onToggleCollapse}
-          className='absolute -right-3 top-10 z-20 hidden size-6 items-center justify-center rounded-full border border-(--app-border) bg-(--surface-primary) text-(--muted-text) shadow-sm transition hover:bg-(--surface-secondary) hover:text-(--app-text) md:inline-flex'
+          className='absolute -right-3 top-10 z-20 hidden size-6 items-center justify-center rounded-full border border-(--app-border) bg-(--surface-primary) text-(--muted-text) shadow-sm transition hover:bg-(--surface-secondary) hover:text-(--app-text) md:inline-flex cursor-pointer'
           aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
           title={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
         >
           {isCollapsed ? <ChevronRight className='size-4' /> : <ChevronLeft className='size-4' />}
         </button>
 
-        <div className='mb-6 flex h-14 items-center justify-between px-1'>
+        <div
+          className={`mb-6 flex h-14 items-center ${isCollapsed ? 'justify-center w-full' : 'justify-start px-2'}`}
+        >
           <div>
             {isCollapsed ? (
-              <div className='flex size-9 items-center justify-center rounded-xl bg-(--accent-soft) text-sm font-semibold text-(--accent-strong)'>
+              <div className='flex size-14 items-center justify-center rounded-xl bg-(--accent-soft) text-sm font-semibold text-(--accent-strong)'>
                 {roleConfig.workspaceName.slice(0, 2).toUpperCase()}
               </div>
             ) : (
@@ -102,7 +104,7 @@ const Sidebar = ({
               onClick={onClose}
               title={isCollapsed ? item.label : undefined}
               className={({ isActive }) =>
-                `group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
+                `group flex items-center ${isCollapsed ? 'justify-center' : 'justify-start'} gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
                   isActive
                     ? 'bg-(--accent-soft) text-(--accent-strong)'
                     : 'text-(--muted-text) hover:bg-(--surface-muted) hover:text-(--app-text)'
@@ -150,7 +152,7 @@ const Sidebar = ({
                     onClick={onClose}
                     title={isCollapsed ? action.label : undefined}
                     className={({ isActive }) =>
-                      `${sharedClassName} ${
+                      `${isCollapsed ? 'justify-center' : 'justify-start'} ${sharedClassName} ${
                         isActive ? 'bg-(--accent-soft) text-(--accent-strong)' : ''
                       }`
                     }
@@ -167,7 +169,7 @@ const Sidebar = ({
                   type='button'
                   onClick={onLogout}
                   title={isCollapsed ? action.label : undefined}
-                  className={sharedClassName}
+                  className={`${sharedClassName} flex w-full ${isCollapsed ? 'justify-center' : 'justify-start'}`}
                 >
                   <AppIcon name={action.icon} className='size-4 shrink-0' />
                   {!isCollapsed && <span>{action.label}</span>}

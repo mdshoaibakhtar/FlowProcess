@@ -50,7 +50,7 @@ const Header = ({ currentUser, currentTheme, onMenuClick, onToggleTheme }: Heade
           <button
             type='button'
             onClick={onToggleTheme}
-            className='inline-flex items-center justify-center rounded-lg border border-(--app-border) bg-(--surface-secondary) p-2 text-(--muted-text) transition hover:text-(--app-text)'
+            className='inline-flex items-center justify-center rounded-lg border border-(--app-border) bg-(--surface-secondary) p-2 text-(--muted-text) transition hover:text-(--app-text) cursor-pointer'
             aria-label='Toggle theme'
             title={currentTheme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
           >
@@ -61,7 +61,7 @@ const Header = ({ currentUser, currentTheme, onMenuClick, onToggleTheme }: Heade
             )}
           </button>
 
-          <div className='hidden text-right sm:block'>
+          <div className='hidden text-start sm:block'>
             <p className='text-sm font-semibold text-(--app-text)'>{currentUser.name}</p>
             <p className='text-xs text-(--muted-text)'>{currentUser.email}</p>
           </div>
