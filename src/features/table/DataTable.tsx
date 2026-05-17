@@ -10,6 +10,8 @@ import {
   type SortingState,
 } from '@tanstack/react-table';
 import { useMemo, useState } from 'react';
+import DialogScreen from '../../components/common/DialogScreen';
+import WorkflowBuilder from '../workflow-builder/WorkflowBuilder';
 
 type DataTableProps<T> = {
   title?: string;
@@ -20,6 +22,8 @@ type DataTableProps<T> = {
 const DataTable = <T,>({ title = 'Table', data, columns }: DataTableProps<T>) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [globalFilter, setGlobalFilter] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedFlow, setSelectedFlow] = useState('');
 
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
@@ -50,8 +54,20 @@ const DataTable = <T,>({ title = 'Table', data, columns }: DataTableProps<T>) =>
     [table.getPageCount()],
   );
 
+  const handleViewFlow = (name: string) => {
+    setSelectedFlow(name);
+    setIsOpen(true);
+  };
+
   return (
     <div className='flex h-[85vh] flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm'>
+      <DialogScreen
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        title={selectedFlow ?? 'Workflow'}
+        body={<WorkflowBuilder />}
+        width='full'
+      />
       {/* Header */}
       <div className='mb-4 flex items-center justify-between'>
         <h2 className='text-lg font-semibold text-slate-900'>{title}</h2>
@@ -79,7 +95,7 @@ const DataTable = <T,>({ title = 'Table', data, columns }: DataTableProps<T>) =>
                     className='cursor-pointer text-sm font-medium text-slate-600 w-[22%]'
                   >
                     {header.id !== 'action' && (
-                      <div className='flex items-center gap-2 p-3'>
+                      <div className='flex items-center gap-2 px-3 py-4'>
                         <p>{flexRender(header.column.columnDef.header, header.getContext())}</p>
                         <p>
                           {{
@@ -100,13 +116,18 @@ const DataTable = <T,>({ title = 'Table', data, columns }: DataTableProps<T>) =>
               table.getRowModel().rows.map((row) => (
                 <tr key={row.id} className='border-b border-slate-100 hover:bg-slate-50'>
                   {row.getVisibleCells().map((cell) => (
-                    <td key={cell.id} className='px-4 py-4 text-sm text-slate-700 cursor-pointer'>
+                    <td
+                      key={cell.id}
+                      className='px-4 py-4 text-sm text-slate-700 cursor-pointer'
+                      onClick={() => handleViewFlow(cell.row.original.workflowName ?? '')}
+                    >
                       {cell.column.id === 'action' ? (
-                        <div className='flex items-center gap-2'>
-                          <button className='rounded-md bg-(--accent-soft) px-3 py-1 text-sm text-(--accent-strong) hover:bg-(--accent-soft) w-full cursor-pointer transition'>
-                            View
-                          </button>
-                        </div>
+                        <button
+                          onClick={() => handleViewFlow(cell.row.original.workflowName ?? '')}
+                          className='flex items-center justify-center gap-2 rounded-md bg-(--accent-soft) px-3 py-1 text-sm text-(--accent-strong) hover:bg-(--accent-soft) w-full cursor-pointer transition'
+                        >
+                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                        </button>
                       ) : (
                         flexRender(cell.column.columnDef.cell, cell.getContext())
                       )}
