@@ -8,6 +8,7 @@
   --surface-primary: #ffffff;
   --surface-secondary: #f8fafc;
   --surface-muted: #f1f5f9;
+
   --accent-soft: #e0ebff;
   --accent-strong: #1d4ed8;
 
@@ -22,7 +23,9 @@
   --danger-soft: #ffe4e6;
   --danger-strong: #be123c;
 
-  font-family: 'Inter', 'Segoe UI', sans-serif;
+  --app-font-family: 'Inter', 'Segoe UI', sans-serif;
+
+  font-family: var(--app-font-family);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -37,8 +40,6 @@
   --surface-primary: #111c2e;
   --surface-secondary: #17263d;
   --surface-muted: #1b2a3f;
-  --accent-soft: rgba(96, 165, 250, 0.24);
-  --accent-strong: #bfdbfe;
 
   --tone-blue-bg: rgba(59, 130, 246, 0.22);
   --tone-blue-icon: #93c5fd;
@@ -48,10 +49,94 @@
   --tone-amber-icon: #fcd34d;
   --tone-rose-bg: rgba(244, 63, 94, 0.24);
   --tone-rose-icon: #fda4af;
-  --danger-soft: rgba(244, 63, 94, 0.22);
-  --danger-strong: #fda4af;
 
   color-scheme: dark;
+}
+
+:root[data-accent='blue'] {
+  --accent-soft: #e0ebff;
+  --accent-strong: #1d4ed8;
+  --danger-soft: #ffe4e6;
+  --danger-strong: #be123c;
+}
+
+:root[data-accent='emerald'] {
+  --accent-soft: #dcfce7;
+  --accent-strong: #047857;
+  --danger-soft: #ffe4e6;
+  --danger-strong: #be123c;
+}
+
+:root[data-accent='amber'] {
+  --accent-soft: #fef3c7;
+  --accent-strong: #b45309;
+  --danger-soft: #ffe4e6;
+  --danger-strong: #be123c;
+}
+
+:root[data-accent='rose'] {
+  --accent-soft: #ffe4e6;
+  --accent-strong: #be123c;
+  --danger-soft: #ffe4e6;
+  --danger-strong: #be123c;
+}
+
+:root[data-accent='violet'] {
+  --accent-soft: #ede9fe;
+  --accent-strong: #6d28d9;
+  --danger-soft: #ffe4e6;
+  --danger-strong: #be123c;
+}
+
+:root[data-theme='dark'][data-accent='blue'] {
+  --accent-soft: rgba(96, 165, 250, 0.24);
+  --accent-strong: #bfdbfe;
+  --danger-soft: rgba(244, 63, 94, 0.22);
+  --danger-strong: #fda4af;
+}
+
+:root[data-theme='dark'][data-accent='emerald'] {
+  --accent-soft: rgba(16, 185, 129, 0.24);
+  --accent-strong: #6ee7b7;
+  --danger-soft: rgba(244, 63, 94, 0.22);
+  --danger-strong: #fda4af;
+}
+
+:root[data-theme='dark'][data-accent='amber'] {
+  --accent-soft: rgba(245, 158, 11, 0.22);
+  --accent-strong: #fcd34d;
+  --danger-soft: rgba(244, 63, 94, 0.22);
+  --danger-strong: #fda4af;
+}
+
+:root[data-theme='dark'][data-accent='rose'] {
+  --accent-soft: rgba(244, 63, 94, 0.24);
+  --accent-strong: #fda4af;
+  --danger-soft: rgba(244, 63, 94, 0.22);
+  --danger-strong: #fda4af;
+}
+
+:root[data-theme='dark'][data-accent='violet'] {
+  --accent-soft: rgba(139, 92, 246, 0.24);
+  --accent-strong: #ddd6fe;
+  --danger-soft: rgba(244, 63, 94, 0.22);
+  --danger-strong: #fda4af;
+}
+
+:root[data-font='inter'] {
+  --app-font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+:root[data-font='modern'] {
+  --app-font-family: 'Trebuchet MS', 'Segoe UI', sans-serif;
+}
+
+:root[data-font='classic'] {
+  --app-font-family: Georgia, 'Times New Roman', serif;
+}
+
+:root[data-font='mono'] {
+  --app-font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
 }
 
 * {
@@ -63,6 +148,7 @@ body {
   min-height: 100vh;
   background-color: var(--app-bg);
   color: var(--app-text);
+  font-family: var(--app-font-family);
   transition:
     background-color 0.2s ease,
     color 0.2s ease;

@@ -42,10 +42,10 @@ const fallbackHistory = {
 
 const KpiDetails = () => {
   const { kpiId } = useParams();
-  const { activeRole, theme } = useAppLayoutContext();
+  const { activeRole, theme, preferences, t } = useAppLayoutContext();
   const dashboard = roleDashboardConfig[activeRole];
   const kpi = dashboard.kpis.find((item) => item.id === kpiId);
-  const [chartType, setChartType] = useState<KpiChartType>('line');
+  const [chartType, setChartType] = useState<KpiChartType>(preferences.defaultKpiChartType);
 
   const history = kpi?.history ?? fallbackHistory;
   const axisColor = theme === 'dark' ? '#cbd5e1' : '#475569';
@@ -141,16 +141,14 @@ const KpiDetails = () => {
   if (!kpi) {
     return (
       <div className='rounded-2xl border border-(--app-border) bg-(--surface-primary) p-6'>
-        <h1 className='text-2xl font-semibold text-(--app-text)'>KPI not found</h1>
-        <p className='mt-2 text-(--muted-text)'>
-          The selected KPI does not exist in the current dashboard config.
-        </p>
+        <h1 className='text-2xl font-semibold text-(--app-text)'>{t('kpi_not_found_title')}</h1>
+        <p className='mt-2 text-(--muted-text)'>{t('kpi_not_found_description')}</p>
         <Link
           to='/'
           className='mt-4 inline-flex items-center gap-2 rounded-lg border border-(--app-border) bg-(--surface-secondary) px-3 py-2 text-sm text-(--app-text)'
         >
           <ArrowLeft className='size-4' />
-          Back to Dashboard
+          {t('back_to_dashboard')}
         </Link>
       </div>
     );
@@ -164,18 +162,18 @@ const KpiDetails = () => {
           className='inline-flex items-center gap-2 rounded-lg border border-(--app-border) bg-(--surface-secondary) px-3 py-2 text-sm font-medium text-(--app-text) transition hover:bg-(--surface-muted)'
         >
           <ArrowLeft className='size-4' />
-          Back to Dashboard
+          {t('back_to_dashboard')}
         </Link>
 
         <label className='flex items-center gap-2 text-sm text-(--muted-text)'>
-          Chart Type
+          {t('chart_type')}
           <select
             value={chartType}
             onChange={(event) => setChartType(event.target.value as KpiChartType)}
             className='rounded-lg border border-(--app-border) bg-(--surface-primary) px-3 py-2 text-sm text-(--app-text) outline-none ring-0'
           >
-            <option value='line'>Line</option>
-            <option value='bar'>Bar</option>
+            <option value='line'>{t('chart_line')}</option>
+            <option value='bar'>{t('chart_bar')}</option>
           </select>
         </label>
       </div>
@@ -194,11 +192,11 @@ const KpiDetails = () => {
 
         <div className='mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2'>
           <div className='rounded-xl border border-(--app-border) bg-(--surface-secondary) p-4'>
-            <p className='text-sm text-(--muted-text)'>Current Value</p>
+            <p className='text-sm text-(--muted-text)'>{t('kpi_current_value')}</p>
             <p className='mt-1 text-3xl font-semibold text-(--app-text)'>{kpi.value}</p>
           </div>
           <div className='rounded-xl border border-(--app-border) bg-(--surface-secondary) p-4'>
-            <p className='text-sm text-(--muted-text)'>Recent Change</p>
+            <p className='text-sm text-(--muted-text)'>{t('kpi_recent_change')}</p>
             <p className='mt-1 text-2xl font-semibold text-(--app-text)'>{kpi.change}</p>
           </div>
         </div>
@@ -206,9 +204,7 @@ const KpiDetails = () => {
 
       <section className='rounded-2xl border border-(--app-border) bg-(--surface-primary) p-5 shadow-sm'>
         <h2 className='text-lg font-semibold text-(--app-text)'>{kpi.history.title}</h2>
-        <p className='mt-1 text-sm text-(--muted-text)'>
-          Historical view for this KPI from your JSON-based dashboard config.
-        </p>
+        <p className='mt-1 text-sm text-(--muted-text)'>{t('kpi_history_description')}</p>
 
         <div className='mt-5 h-80'>
           {chartType === 'line' ? (

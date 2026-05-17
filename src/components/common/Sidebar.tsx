@@ -10,6 +10,21 @@ type SidebarProps = {
   onClose: () => void;
   onToggleCollapse: () => void;
   onLogout: () => void;
+  t: (key: string) => string;
+};
+
+const navLabelKeyMap: Record<string, string> = {
+  dashboard: 'nav_dashboard',
+  workflows: 'nav_workflows',
+  inbox: 'nav_inbox',
+  requests: 'nav_requests',
+  users: 'nav_users',
+};
+
+const actionLabelKeyMap: Record<string, string> = {
+  'profile-settings': 'action_profile_settings',
+  settings: 'action_settings',
+  logout: 'action_logout',
 };
 
 const getInitials = (name: string) => {
@@ -28,6 +43,7 @@ const Sidebar = ({
   onClose,
   onToggleCollapse,
   onLogout,
+  t,
 }: SidebarProps) => {
   const navigationItems = roleConfig.navigation.filter((item) =>
     item.roles.includes(roleConfig.role),
@@ -56,7 +72,7 @@ const Sidebar = ({
         <button
           type='button'
           onClick={onToggleCollapse}
-          className='absolute -right-3 top-10 z-20 hidden size-6 items-center justify-center rounded-full border border-(--app-border) bg-(--surface-primary) text-(--muted-text) shadow-sm transition hover:bg-(--surface-secondary) hover:text-(--app-text) md:inline-flex cursor-pointer'
+          className='absolute -right-3 top-10 z-20 hidden size-6 cursor-pointer items-center justify-center rounded-full border border-(--app-border) bg-(--surface-primary) text-(--muted-text) shadow-sm transition hover:bg-(--surface-secondary) hover:text-(--app-text) md:inline-flex'
           aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
           title={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
         >
@@ -64,7 +80,7 @@ const Sidebar = ({
         </button>
 
         <div
-          className={`mb-6 flex h-14 items-center ${isCollapsed ? 'justify-center w-full' : 'justify-start px-2'}`}
+          className={`mb-6 flex h-14 items-center ${isCollapsed ? 'w-full justify-center' : 'justify-start px-2'}`}
         >
           <div>
             {isCollapsed ? (
@@ -74,11 +90,9 @@ const Sidebar = ({
             ) : (
               <>
                 <p className='text-xs font-semibold uppercase tracking-[0.2em] text-(--muted-text)'>
-                  {roleConfig.workspaceTagline}
+                  {t('workspace_tagline')}
                 </p>
-                <h1 className='mt-1 text-xl font-semibold text-(--app-text)'>
-                  {roleConfig.workspaceName}
-                </h1>
+                <h1 className='mt-1 text-xl font-semibold text-(--app-text)'>{t('app_name')}</h1>
               </>
             )}
           </div>
@@ -102,7 +116,7 @@ const Sidebar = ({
               to={item.path}
               end={item.path === '/'}
               onClick={onClose}
-              title={isCollapsed ? item.label : undefined}
+              title={isCollapsed ? t(navLabelKeyMap[item.id] ?? item.label) : undefined}
               className={({ isActive }) =>
                 `group flex items-center ${isCollapsed ? 'justify-center' : 'justify-start'} gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
                   isActive
@@ -112,7 +126,7 @@ const Sidebar = ({
               }
             >
               <AppIcon name={item.icon} className='size-4 shrink-0' />
-              {!isCollapsed && <span>{item.label}</span>}
+              {!isCollapsed && <span>{t(navLabelKeyMap[item.id] ?? item.label)}</span>}
             </NavLink>
           ))}
         </nav>
@@ -150,7 +164,9 @@ const Sidebar = ({
                     key={action.id}
                     to={action.path}
                     onClick={onClose}
-                    title={isCollapsed ? action.label : undefined}
+                    title={
+                      isCollapsed ? t(actionLabelKeyMap[action.id] ?? action.label) : undefined
+                    }
                     className={({ isActive }) =>
                       `${isCollapsed ? 'justify-center' : 'justify-start'} ${sharedClassName} ${
                         isActive ? 'bg-(--accent-soft) text-(--accent-strong)' : ''
@@ -158,7 +174,7 @@ const Sidebar = ({
                     }
                   >
                     <AppIcon name={action.icon} className='size-4 shrink-0' />
-                    {!isCollapsed && <span>{action.label}</span>}
+                    {!isCollapsed && <span>{t(actionLabelKeyMap[action.id] ?? action.label)}</span>}
                   </NavLink>
                 );
               }
@@ -168,11 +184,11 @@ const Sidebar = ({
                   key={action.id}
                   type='button'
                   onClick={onLogout}
-                  title={isCollapsed ? action.label : undefined}
+                  title={isCollapsed ? t(actionLabelKeyMap[action.id] ?? action.label) : undefined}
                   className={`${sharedClassName} flex w-full ${isCollapsed ? 'justify-center' : 'justify-start'}`}
                 >
                   <AppIcon name={action.icon} className='size-4 shrink-0' />
-                  {!isCollapsed && <span>{action.label}</span>}
+                  {!isCollapsed && <span>{t(actionLabelKeyMap[action.id] ?? action.label)}</span>}
                 </button>
               );
             })}

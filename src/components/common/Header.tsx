@@ -7,23 +7,24 @@ type HeaderProps = {
   currentTheme: ThemeMode;
   onMenuClick: () => void;
   onToggleTheme: () => void;
+  t: (key: string) => string;
 };
 
-const pageTitles: Record<string, string> = {
-  '/': 'Dashboard',
-  '/workflows': 'Workflows',
-  '/inbox': 'Inbox',
-  '/requests': 'Requests',
-  '/users': 'Users',
-  '/settings': 'Settings',
-  '/profile-settings': 'Profile Settings',
+const pageTitleKeyMap: Record<string, string> = {
+  '/': 'page_dashboard',
+  '/workflows': 'page_workflows',
+  '/inbox': 'page_inbox',
+  '/requests': 'page_requests',
+  '/users': 'page_users',
+  '/settings': 'page_settings',
+  '/profile-settings': 'page_profile_settings',
 };
 
-const Header = ({ currentUser, currentTheme, onMenuClick, onToggleTheme }: HeaderProps) => {
+const Header = ({ currentUser, currentTheme, onMenuClick, onToggleTheme, t }: HeaderProps) => {
   const { pathname } = useLocation();
   const currentTitle = pathname.startsWith('/kpi/')
-    ? 'KPI Details'
-    : (pageTitles[pathname] ?? 'Processflow');
+    ? t('page_kpi_details')
+    : t(pageTitleKeyMap[pathname] ?? 'app_name');
 
   return (
     <header className='sticky top-0 z-20 border-b border-(--app-border) bg-(--surface-primary)/95 backdrop-blur'>
@@ -32,7 +33,7 @@ const Header = ({ currentUser, currentTheme, onMenuClick, onToggleTheme }: Heade
           <button
             type='button'
             onClick={onMenuClick}
-            className='rounded-lg p-2 text-(--muted-text) transition hover:bg-(--surface-muted) hover:text-(--app-text) md:hidden'
+            className='cursor-pointer rounded-lg p-2 text-(--muted-text) transition hover:bg-(--surface-muted) hover:text-(--app-text) md:hidden'
             aria-label='Open sidebar'
           >
             <Menu className='size-5' />
@@ -40,7 +41,7 @@ const Header = ({ currentUser, currentTheme, onMenuClick, onToggleTheme }: Heade
 
           <div>
             <p className='text-xs font-semibold uppercase tracking-[0.18em] text-(--muted-text)'>
-              {currentUser.title}
+              {currentUser.title === 'Admin' ? t('role_admin') : currentUser.title}
             </p>
             <h2 className='text-base font-semibold text-(--app-text) sm:text-lg'>{currentTitle}</h2>
           </div>
@@ -50,9 +51,9 @@ const Header = ({ currentUser, currentTheme, onMenuClick, onToggleTheme }: Heade
           <button
             type='button'
             onClick={onToggleTheme}
-            className='inline-flex items-center justify-center rounded-lg border border-(--app-border) bg-(--surface-secondary) p-2 text-(--muted-text) transition hover:text-(--app-text) cursor-pointer'
-            aria-label='Toggle theme'
-            title={currentTheme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+            className='inline-flex cursor-pointer items-center justify-center rounded-lg border border-(--app-border) bg-(--surface-secondary) p-2 text-(--muted-text) transition hover:text-(--app-text)'
+            aria-label={t('toggle_theme')}
+            title={currentTheme === 'light' ? t('switch_dark') : t('switch_light')}
           >
             {currentTheme === 'light' ? (
               <MoonStar className='size-4' />

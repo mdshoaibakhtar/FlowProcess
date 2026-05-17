@@ -1,6 +1,11 @@
 export type ThemeMode = 'light' | 'dark';
 
 export type AppRole = 'admin';
+export type AppLanguage = 'en' | 'hi';
+export type AccentColor = 'blue' | 'emerald' | 'amber' | 'rose' | 'violet';
+export type FontFamilyOption = 'inter' | 'modern' | 'classic' | 'mono';
+export type TrendChartType = 'line' | 'bar';
+export type StatusChartType = 'doughnut' | 'pie';
 
 export type IconKey =
   | 'layoutDashboard'
@@ -106,4 +111,14 @@ export type DashboardConfig = {
     data: number[];
     colors: string[];
   };
+};
+
+export type AppPreferences = {
+  mode: ThemeMode;
+  accentColor: AccentColor;
+  fontFamily: FontFamilyOption;
+  defaultTrendChartType: TrendChartType;
+  defaultStatusChartType: StatusChartType;
+  defaultKpiChartType: TrendChartType;
+  language: AppLanguage;
 };
