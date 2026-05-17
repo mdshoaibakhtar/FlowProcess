@@ -1,9 +1,9 @@
-import WorkflowBuilder from '../features/workflow-builder/WorkflowBuilder';
+import Table from '../features/table/Table';
 
 const Workflows = () => {
   return (
-    <div className='border w-full'>
-      <WorkflowBuilder />
+    <div className='w-full h-full'>
+      <Table />
     </div>
   );
 };
