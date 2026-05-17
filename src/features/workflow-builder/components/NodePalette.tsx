@@ -11,7 +11,7 @@ type NodePaletteProps = {
 
 const NodePalette = ({ onDragStart }: NodePaletteProps) => {
   return (
-    <aside className='w-64 shrink-0 border-r border-(--app-border) bg-(--surface-primary) p-4'>
+    <aside className='w-full h-full border-l shrink-0 border-(--app-border) bg-(--surface-primary) p-4'>
       <h3 className='text-sm font-semibold text-(--app-text)'>Node Toolbox</h3>
       <p className='mt-1 text-xs text-(--muted-text)'>Drag any node into the canvas</p>
 

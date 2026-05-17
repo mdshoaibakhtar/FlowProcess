@@ -9,7 +9,7 @@ const WorkflowNodeCard = ({ data, selected }: NodeProps<WorkflowNodeData>) => {
   return (
     <div
       className={`min-w-44 rounded-xl border px-3 py-2 text-left text-xs shadow-sm transition ${NODE_STYLE_CLASSES[data.kind]} ${
-        selected ? 'ring-2 ring-(--accent-strong)' : ''
+        selected ? 'border-2' : ''
       }`}
     >
       {!isTrigger && (

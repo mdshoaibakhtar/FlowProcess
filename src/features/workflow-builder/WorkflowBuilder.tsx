@@ -15,8 +15,6 @@ import {
   type NodeChange,
   type ReactFlowInstance,
 } from 'reactflow';
-import NodeConfigPanel from './components/NodeConfigPanel';
-import NodePalette from './components/NodePalette';
 import WorkflowNodeCard from './components/WorkflowNodeCard';
 import WorkflowToolbar from './components/WorkflowToolbar';
 import {
@@ -29,6 +27,7 @@ import {
 } from './constants';
 import { createSnapshot, deepCopy, isSameSnapshot } from './utils/history';
 import type { WorkflowNode, WorkflowNodeData, WorkflowNodeKind, WorkflowSnapshot } from './types';
+import SidebarPanel from './components/SidebarPanel';
 
 const nodeTypes = {
   workflowNode: WorkflowNodeCard,
@@ -45,7 +44,7 @@ const WorkflowBuilder = () => {
     createSnapshot(INITIAL_NODES, INITIAL_EDGES),
   ]);
   const [historyIndex, setHistoryIndex] = useState(0);
-  const [selectedNodeId, setSelectedNodeId] = useState<string | null>(TRIGGER_NODE_ID);
+  const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
   const [triggerDraftByNodeId, setTriggerDraftByNodeId] = useState<Record<string, string>>({
     [TRIGGER_NODE_ID]: TRIGGER_DEFAULT_NAME,
   });
@@ -421,7 +420,7 @@ const WorkflowBuilder = () => {
       />
 
       <div className='flex min-h-0 flex-1'>
-        <NodePalette onDragStart={handlePaletteDragStart} />
+        {/* <NodePalette onDragStart={handlePaletteDragStart} /> */}
         <div ref={flowCanvasRef} className='min-h-0 min-w-0 flex-1'>
           <ReactFlow
             nodes={nodes}
@@ -438,7 +437,9 @@ const WorkflowBuilder = () => {
             onNodeDragStop={handleNodeDragStop}
             onNodesDelete={handleNodesDelete}
             onEdgesDelete={handleEdgesDelete}
-            fitView
+            defaultViewport={{ x: 0, y: 0, zoom: 0.9 }}
+            minZoom={0.5}
+            maxZoom={1.5}
           >
             <MiniMap />
             <Controls />
@@ -446,15 +447,14 @@ const WorkflowBuilder = () => {
           </ReactFlow>
         </div>
 
-        {selectedNode && (
-          <NodeConfigPanel
-            node={selectedNode}
-            triggerNameDraft={triggerNameDraft}
-            onChangeTriggerName={handleChangeTriggerName}
-            onApplyTriggerConfig={handleApplyTriggerConfig}
-            onClose={() => setSelectedNodeId(null)}
-          />
-        )}
+        <SidebarPanel
+          selectedNode={selectedNode}
+          triggerNameDraft={triggerNameDraft}
+          onChangeTriggerName={handleChangeTriggerName}
+          onApplyTriggerConfig={handleApplyTriggerConfig}
+          onDragStart={handlePaletteDragStart}
+          onCloseConfig={() => setSelectedNodeId(null)}
+        />
       </div>
     </div>
   );

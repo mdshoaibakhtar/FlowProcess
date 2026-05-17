@@ -19,13 +19,13 @@ const NodeConfigPanel = ({
   const isTrigger = node.data.kind === 'trigger';
 
   return (
-    <aside className='w-80 shrink-0 border-l border-(--app-border) bg-(--surface-primary) p-4'>
+    <aside className='w-full shrink-0 h-full border-l border-(--app-border) bg-(--surface-primary) p-4'>
       <div className='mb-4 flex items-center justify-between'>
         <h3 className='text-sm font-semibold text-(--app-text)'>Node Configuration</h3>
         <button
           type='button'
           onClick={onClose}
-          className='rounded-md p-1 text-(--muted-text) transition hover:bg-(--surface-muted) hover:text-(--app-text)'
+          className='rounded-md p-1 text-(--muted-text) transition hover:bg-(--surface-muted)'
         >
           <X className='size-4' />
         </button>
@@ -33,7 +33,7 @@ const NodeConfigPanel = ({
 
       <div className='rounded-xl border border-(--app-border) bg-(--surface-secondary) p-3'>
         <p className='text-xs uppercase tracking-wide text-(--muted-text)'>Node Type</p>
-        <p className='mt-1 text-sm font-semibold text-(--app-text)'>{node.data.kind}</p>
+        <p className='mt-1 text-sm font-semibold text-(--app-text) uppercase'>{node.data.kind}</p>
       </div>
 
       {isTrigger ? (
