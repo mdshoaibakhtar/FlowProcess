@@ -76,18 +76,6 @@ const WorkflowBuilder = () => {
     historyIndexRef.current = historyIndex;
   }, [historyIndex]);
 
-  useEffect(() => {
-    const handleFullscreenChange = () => {
-      setIsFullscreen(document.fullscreenElement === containerRef.current);
-    };
-
-    document.addEventListener('fullscreenchange', handleFullscreenChange);
-
-    return () => {
-      document.removeEventListener('fullscreenchange', handleFullscreenChange);
-    };
-  }, []);
-
   const selectedNode = useMemo(() => {
     return nodes.find((node) => node.id === selectedNodeId) ?? null;
   }, [nodes, selectedNodeId]);
@@ -410,31 +398,28 @@ const WorkflowBuilder = () => {
     }
   }, []);
 
-  const handleToggleFullscreen = useCallback(async () => {
-    if (!containerRef.current) {
-      return;
-    }
-
-    try {
-      if (document.fullscreenElement === containerRef.current) {
-        await document.exitFullscreen();
-        return;
-      }
-
-      await containerRef.current.requestFullscreen();
-    } catch {
-      window.alert('Fullscreen is not available in this browser.');
-    }
+  const handleToggleFullscreen = useCallback(() => {
+    setIsFullscreen((prev) => !prev);
   }, []);
 
   const canUndo = historyIndex > 0;
   const canRedo = historyIndex < history.length - 1;
 
+  useEffect(() => {
+    document.body.style.overflow = isFullscreen ? 'hidden' : 'auto';
+
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [isFullscreen]);
+
   return (
     <div
       ref={containerRef}
       className={`flex w-full flex-col overflow-hidden border border-(--app-border) bg-(--surface-primary) ${
-        isFullscreen ? 'h-screen rounded-none' : 'rounded-2xl h-[85vh] w-full'
+        isFullscreen
+          ? 'fixed inset-0 z-50 h-screen w-screen rounded-none'
+          : 'h-[85vh] w-full rounded-2xl'
       }`}
     >
       <WorkflowToolbar
