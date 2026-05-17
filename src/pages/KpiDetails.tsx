@@ -12,7 +12,7 @@ import {
   type ChartOptions,
 } from 'chart.js';
 import { ArrowLeft } from 'lucide-react';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { Bar, Line } from 'react-chartjs-2';
 import { Link, useParams } from 'react-router-dom';
 import { AppIcon } from '../config/iconRegistry';
@@ -30,8 +30,6 @@ ChartJS.register(
   Filler,
 );
 
-type KpiChartType = 'line' | 'bar';
-
 const fallbackHistory = {
   title: 'KPI History',
   labels: ['No Data'],
@@ -45,7 +43,7 @@ const KpiDetails = () => {
   const { activeRole, theme, preferences, t } = useAppLayoutContext();
   const dashboard = roleDashboardConfig[activeRole];
   const kpi = dashboard.kpis.find((item) => item.id === kpiId);
-  const [chartType, setChartType] = useState<KpiChartType>(preferences.defaultKpiChartType);
+  const chartType = preferences.defaultKpiChartType;
 
   const history = kpi?.history ?? fallbackHistory;
   const axisColor = theme === 'dark' ? '#cbd5e1' : '#475569';
@@ -156,7 +154,7 @@ const KpiDetails = () => {
 
   return (
     <div className='space-y-5'>
-      <div className='flex flex-wrap items-center justify-between gap-3'>
+      <div>
         <Link
           to='/'
           className='inline-flex items-center gap-2 rounded-lg border border-(--app-border) bg-(--surface-secondary) px-3 py-2 text-sm font-medium text-(--app-text) transition hover:bg-(--surface-muted)'
@@ -164,18 +162,6 @@ const KpiDetails = () => {
           <ArrowLeft className='size-4' />
           {t('back_to_dashboard')}
         </Link>
-
-        <label className='flex items-center gap-2 text-sm text-(--muted-text)'>
-          {t('chart_type')}
-          <select
-            value={chartType}
-            onChange={(event) => setChartType(event.target.value as KpiChartType)}
-            className='rounded-lg border border-(--app-border) bg-(--surface-primary) px-3 py-2 text-sm text-(--app-text) outline-none ring-0'
-          >
-            <option value='line'>{t('chart_line')}</option>
-            <option value='bar'>{t('chart_bar')}</option>
-          </select>
-        </label>
       </div>
 
       <section className='rounded-2xl border border-(--app-border) bg-(--surface-primary) p-6 shadow-sm'>

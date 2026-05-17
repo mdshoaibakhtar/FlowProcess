@@ -12,7 +12,7 @@ import {
   type ChartData,
   type ChartOptions,
 } from 'chart.js';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { Bar, Doughnut, Line, Pie } from 'react-chartjs-2';
 import KpiCard from '../components/dashboard/KpiCard';
 import { roleDashboardConfig } from '../config/dashboardConfig';
@@ -31,10 +31,10 @@ ChartJS.register(
 );
 
 const Dashboard = () => {
-  const { activeRole, theme, preferences, t } = useAppLayoutContext();
+  const { activeRole, theme, preferences } = useAppLayoutContext();
   const dashboard = roleDashboardConfig[activeRole];
-  const [trendChartType, setTrendChartType] = useState(preferences.defaultTrendChartType);
-  const [statusChartType, setStatusChartType] = useState(preferences.defaultStatusChartType);
+  const trendChartType = preferences.defaultTrendChartType;
+  const statusChartType = preferences.defaultStatusChartType;
 
   const axisColor = theme === 'dark' ? '#cbd5e1' : '#475569';
   const gridColor = theme === 'dark' ? 'rgba(148, 163, 184, 0.2)' : 'rgba(148, 163, 184, 0.26)';
@@ -252,18 +252,6 @@ const Dashboard = () => {
               </h2>
               <p className='mt-1 text-sm text-(--muted-text)'>{dashboard.trendChart.description}</p>
             </div>
-
-            <label className='flex items-center gap-2 text-sm text-(--muted-text)'>
-              {t('chart_type')}
-              <select
-                value={trendChartType}
-                onChange={(event) => setTrendChartType(event.target.value as 'line' | 'bar')}
-                className='rounded-lg border border-(--app-border) bg-(--surface-primary) px-3 py-2 text-sm text-(--app-text) outline-none ring-0'
-              >
-                <option value='line'>{t('chart_line')}</option>
-                <option value='bar'>{t('chart_bar')}</option>
-              </select>
-            </label>
           </div>
 
           <div className='mt-5 h-80'>
@@ -276,7 +264,7 @@ const Dashboard = () => {
         </article>
 
         <article className='rounded-2xl border border-(--app-border) bg-(--surface-primary) p-5 shadow-sm'>
-          <div className='flex flex-wrap items-center justify-between gap-3'>
+          <div>
             <div>
               <h2 className='text-lg font-semibold text-(--app-text)'>
                 {dashboard.statusChart.title}
@@ -285,18 +273,6 @@ const Dashboard = () => {
                 {dashboard.statusChart.description}
               </p>
             </div>
-
-            <label className='flex items-center gap-2 text-sm text-(--muted-text)'>
-              {t('chart_type')}
-              <select
-                value={statusChartType}
-                onChange={(event) => setStatusChartType(event.target.value as 'doughnut' | 'pie')}
-                className='rounded-lg border border-(--app-border) bg-(--surface-primary) px-3 py-2 text-sm text-(--app-text) outline-none ring-0'
-              >
-                <option value='doughnut'>{t('chart_doughnut')}</option>
-                <option value='pie'>{t('chart_pie')}</option>
-              </select>
-            </label>
           </div>
 
           <div className='mt-5 h-80'>
