@@ -18,4 +18,8 @@ export const workflowColumns: ColumnDef<Workflow>[] = [
     accessorKey: 'lastModifiedDate',
     header: 'Last Modified Date',
   },
+  {
+    accessorKey: 'action',
+    header: '',
+  },
 ];

@@ -4,6 +4,7 @@ export type Workflow = {
   createdAt: string;
   lastModifiedBy: string;
   lastModifiedDate: string;
+  action: string;
 };
 
 const users = [
@@ -38,5 +39,6 @@ export const workflowData: Workflow[] = Array.from({ length: 100 }, (_, index) =
     createdAt: createdDate.toLocaleDateString(),
     lastModifiedBy: randomUser,
     lastModifiedDate: modifiedDate.toLocaleDateString(),
+    action: 'View',
   };
 });

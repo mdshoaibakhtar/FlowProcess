@@ -68,7 +68,7 @@ const DataTable = <T,>({ title = 'Table', data, columns }: DataTableProps<T>) =>
 
       {/* Table */}
       <div className='flex-1 overflow-auto rounded-lg border border-slate-100'>
-        <table className='w-full text-left'>
+        <table className='w-full text'>
           <thead className='sticky top-0 bg-slate-50'>
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id} className='border-b border-slate-200'>
@@ -76,16 +76,19 @@ const DataTable = <T,>({ title = 'Table', data, columns }: DataTableProps<T>) =>
                   <th
                     key={header.id}
                     onClick={header.column.getToggleSortingHandler()}
-                    className='cursor-pointer px-4 py-3 text-sm font-medium text-slate-600'
+                    className='cursor-pointer text-sm font-medium text-slate-600 w-[22%]'
                   >
-                    <div className='flex items-center gap-2'>
-                      {flexRender(header.column.columnDef.header, header.getContext())}
-
-                      {{
-                        asc: '↑',
-                        desc: '↓',
-                      }[header.column.getIsSorted() as string] ?? ''}
-                    </div>
+                    {header.id !== 'action' && (
+                      <div className='flex items-center gap-2 p-3'>
+                        <p>{flexRender(header.column.columnDef.header, header.getContext())}</p>
+                        <p>
+                          {{
+                            asc: '↑',
+                            desc: '↓',
+                          }[header.column.getIsSorted() as string] ?? ''}
+                        </p>
+                      </div>
+                    )}
                   </th>
                 ))}
               </tr>
@@ -97,8 +100,16 @@ const DataTable = <T,>({ title = 'Table', data, columns }: DataTableProps<T>) =>
               table.getRowModel().rows.map((row) => (
                 <tr key={row.id} className='border-b border-slate-100 hover:bg-slate-50'>
                   {row.getVisibleCells().map((cell) => (
-                    <td key={cell.id} className='px-4 py-4 text-sm text-slate-700'>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    <td key={cell.id} className='px-4 py-4 text-sm text-slate-700 cursor-pointer'>
+                      {cell.column.id === 'action' ? (
+                        <div className='flex items-center gap-2'>
+                          <button className='rounded-md bg-(--accent-soft) px-3 py-1 text-sm text-(--accent-strong) hover:bg-(--accent-soft) w-full cursor-pointer transition'>
+                            View
+                          </button>
+                        </div>
+                      ) : (
+                        flexRender(cell.column.columnDef.cell, cell.getContext())
+                      )}
                     </td>
                   ))}
                 </tr>
