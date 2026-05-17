@@ -130,7 +130,7 @@ const DataTable = <T,>({ title = 'Table', data, columns }: DataTableProps<T>) =>
         <select
           value={pagination.pageSize}
           onChange={(event) => table.setPageSize(Number(event.target.value))}
-          className='rounded-lg border border-slate-200 px-3 py-2 text-sm'
+          className='rounded-lg border border-slate-200 px-3 py-2 text-sm cursor-pointer'
         >
           <option value={10}>10</option>
           <option value={15}>15</option>
@@ -142,7 +142,7 @@ const DataTable = <T,>({ title = 'Table', data, columns }: DataTableProps<T>) =>
           <button
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
-            className='rounded-md border px-3 py-2 text-sm disabled:opacity-40'
+            className='rounded-md border px-3 py-2 text-sm disabled:opacity-40 cursor-pointer'
           >
             Prev
           </button>
@@ -151,7 +151,7 @@ const DataTable = <T,>({ title = 'Table', data, columns }: DataTableProps<T>) =>
             <button
               key={page}
               onClick={() => table.setPageIndex(page - 1)}
-              className={`rounded-md px-3 py-2 text-sm ${
+              className={`rounded-md px-3 py-2 text-sm cursor-pointer ${
                 pagination.pageIndex + 1 === page
                   ? 'bg-slate-900 text-white'
                   : 'border border-slate-200'
@@ -164,7 +164,7 @@ const DataTable = <T,>({ title = 'Table', data, columns }: DataTableProps<T>) =>
           <button
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
-            className='rounded-md border px-3 py-2 text-sm disabled:opacity-40'
+            className='rounded-md border px-3 py-2 text-sm disabled:opacity-40 cursor-pointer'
           >
             Next
           </button>
