@@ -413,6 +413,52 @@ const WorkflowBuilder = () => {
     };
   }, [isFullscreen]);
 
+  const handleResetFlow = useCallback(() => {
+    if (!flowCanvasRef.current) {
+      return;
+    }
+
+    const canvasWidth = flowCanvasRef.current.clientWidth;
+
+    const resetNodes = INITIAL_NODES.map((node) =>
+      node.id === TRIGGER_NODE_ID
+        ? {
+            ...node,
+            position: {
+              x: canvasWidth / 2 - 100,
+              y: 40,
+            },
+          }
+        : node,
+    );
+
+    setNodes(resetNodes);
+    setEdges(INITIAL_EDGES);
+    setSelectedNodeId(null);
+    nodeSequenceRef.current = 1;
+
+    const initialSnapshot = createSnapshot(resetNodes, INITIAL_EDGES);
+
+    setHistory([initialSnapshot]);
+    setHistoryIndex(0);
+
+    historyRef.current = [initialSnapshot];
+    historyIndexRef.current = 0;
+    nodesRef.current = resetNodes;
+    edgesRef.current = INITIAL_EDGES;
+
+    window.setTimeout(() => {
+      reactFlowInstance?.setViewport(
+        {
+          x: 0,
+          y: 0,
+          zoom: 0.9,
+        },
+        { duration: 300 },
+      );
+    }, 50);
+  }, [reactFlowInstance]);
+
   return (
     <div
       ref={containerRef}
@@ -431,6 +477,7 @@ const WorkflowBuilder = () => {
         onToggleFullscreen={handleToggleFullscreen}
         onDownloadPng={handleDownloadPng}
         onDownloadJson={handleDownloadJson}
+        onResetFlow={handleResetFlow}
       />
 
       <div className='flex min-h-0 flex-1'>

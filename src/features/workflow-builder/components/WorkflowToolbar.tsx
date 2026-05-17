@@ -1,5 +1,4 @@
-import { Download, FileJson, Maximize2, Minimize2, Redo2, Undo2 } from 'lucide-react';
-
+import { Download, FileJson, Maximize2, Minimize2, Redo2, RotateCcw, Undo2 } from 'lucide-react';
 type WorkflowToolbarProps = {
   canUndo: boolean;
   canRedo: boolean;
@@ -9,8 +8,8 @@ type WorkflowToolbarProps = {
   onToggleFullscreen: () => void;
   onDownloadPng: () => void;
   onDownloadJson: () => void;
+  onResetFlow: () => void;
 };
-
 const actionButtonClassName =
   'inline-flex items-center gap-2 rounded-lg border border-(--app-border) bg-(--surface-secondary) px-3 py-2 text-sm font-medium text-(--app-text) transition hover:bg-(--surface-muted) disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer';
 
@@ -23,6 +22,7 @@ const WorkflowToolbar = ({
   onToggleFullscreen,
   onDownloadPng,
   onDownloadJson,
+  onResetFlow,
 }: WorkflowToolbarProps) => {
   return (
     <div className='flex flex-wrap items-center justify-between gap-2 border-b border-(--app-border) bg-(--surface-primary) px-4 py-3'>
@@ -45,6 +45,10 @@ const WorkflowToolbar = ({
         >
           <Redo2 className='size-4' />
           Redo
+        </button>
+        <button type='button' onClick={onResetFlow} className={actionButtonClassName}>
+          <RotateCcw className='size-4' />
+          Reset Flow
         </button>
       </div>
 
