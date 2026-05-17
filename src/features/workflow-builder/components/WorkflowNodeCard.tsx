@@ -15,8 +15,8 @@ const WorkflowNodeCard = ({ data, selected }: NodeProps<WorkflowNodeData>) => {
       {!isTrigger && (
         <Handle
           type='target'
-          position={Position.Left}
-          className='!h-2.5 !w-2.5 !border !border-slate-400 !bg-slate-100'
+          position={Position.Top}
+          className='h-2! w-2! border! border-slate-400! bg-slate-100!'
         />
       )}
 
@@ -26,8 +26,8 @@ const WorkflowNodeCard = ({ data, selected }: NodeProps<WorkflowNodeData>) => {
       {!isStop && (
         <Handle
           type='source'
-          position={Position.Right}
-          className='!h-2.5 !w-2.5 !border !border-slate-400 !bg-slate-100'
+          position={Position.Bottom}
+          className='h-2! w-2! border! border-slate-400! bg-slate-100!'
         />
       )}
     </div>
