@@ -324,12 +324,12 @@ const WorkflowBuilder = () => {
         currentNodes.map((node) =>
           node.id === TRIGGER_NODE_ID
             ? {
-                ...node,
-                position: {
-                  x: canvasWidth / 2 - 100,
-                  y: 40,
-                },
-              }
+              ...node,
+              position: {
+                x: canvasWidth / 2 - 100,
+                y: 40,
+              },
+            }
             : node,
         ),
       );
@@ -423,12 +423,12 @@ const WorkflowBuilder = () => {
     const resetNodes = INITIAL_NODES.map((node) =>
       node.id === TRIGGER_NODE_ID
         ? {
-            ...node,
-            position: {
-              x: canvasWidth / 2 - 100,
-              y: 40,
-            },
-          }
+          ...node,
+          position: {
+            x: canvasWidth / 2 - 100,
+            y: 40,
+          },
+        }
         : node,
     );
 
@@ -458,6 +458,12 @@ const WorkflowBuilder = () => {
       );
     }, 50);
   }, [reactFlowInstance]);
+
+  const handleSaveFlow = useCallback(() => {}, [reactFlowInstance]);
+
+  const handleCancelFlow = useCallback(() => {
+    handleResetFlow();
+  }, [handleResetFlow]);
 
   return (
     <div
@@ -517,6 +523,8 @@ const WorkflowBuilder = () => {
           onCloseConfig={() => setSelectedNodeId(null)}
           isCollapsed={isSidebarCollapsed}
           onToggleCollapse={() => setIsSidebarCollapsed((prev) => !prev)}
+          onSaveFlow={handleSaveFlow}
+          onCancelFlow={handleCancelFlow}
         />
       </div>
     </div>

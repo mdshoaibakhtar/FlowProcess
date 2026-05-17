@@ -16,6 +16,8 @@ type SidebarPanelProps = {
     event: DragEvent<HTMLButtonElement>,
     kind: Exclude<WorkflowNodeKind, 'trigger'>,
   ) => void;
+  onSaveFlow: () => void;
+  onCancelFlow: () => void;
 };
 
 const SidebarPanel = ({
@@ -27,6 +29,8 @@ const SidebarPanel = ({
   onCloseConfig,
   isCollapsed,
   onToggleCollapse,
+  onSaveFlow,
+  onCancelFlow,
 }: SidebarPanelProps) => {
   return (
     <aside
@@ -45,7 +49,11 @@ const SidebarPanel = ({
       {!isCollapsed && (
         <>
           {!selectedNode ? (
-            <NodePalette onDragStart={onDragStart} />
+            <NodePalette
+              onDragStart={onDragStart}
+              onSaveFlow={onSaveFlow}
+              onCancelFlow={onCancelFlow}
+            />
           ) : (
             <NodeConfigPanel
               node={selectedNode}
