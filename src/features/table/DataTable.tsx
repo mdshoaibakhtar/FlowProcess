@@ -13,13 +13,17 @@ import { useMemo, useState } from 'react';
 import DialogScreen from '../../components/common/DialogScreen';
 import WorkflowBuilder from '../workflow-builder/WorkflowBuilder';
 
-type DataTableProps<T> = {
+type BaseRow = {
+  workflowName: string;
+};
+
+type DataTableProps<T extends BaseRow> = {
   title?: string;
   data: T[];
   columns: ColumnDef<T>[];
 };
 
-const DataTable = <T,>({ title = 'Table', data, columns }: DataTableProps<T>) => {
+const DataTable = <T extends BaseRow>({ title = 'Table', data, columns }: DataTableProps<T>) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [globalFilter, setGlobalFilter] = useState('');
   const [isOpen, setIsOpen] = useState(false);
