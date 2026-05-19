@@ -73,8 +73,7 @@ const DataTable = <T extends BaseRow>({
   };
 
   return (
-    <div className='flex h-[85vh] flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm'>
-      {/* Component */}
+    <div className='flex h-[85vh] flex-col rounded-2xl border border-(--app-border) bg-(--surface-secondary) p-6 shadow-sm'>
       {isDialog && (
         <DialogScreen
           isOpen={isOpen}
@@ -84,41 +83,42 @@ const DataTable = <T extends BaseRow>({
           className={dialogClass}
         />
       )}
+
       {/* Header */}
       <div className='mb-4 flex items-center justify-between'>
-        <h2 className='text-lg font-semibold text-slate-900'>{title}</h2>
+        <h2 className='text-lg font-semibold text-(--text-primary)'>{title}</h2>
 
-        <div className='flex items-center gap-3'>
-          <input
-            value={globalFilter}
-            onChange={(event) => setGlobalFilter(event.target.value)}
-            placeholder='Search...'
-            className='w-64 rounded-lg border border-slate-200 px-4 py-2 text-sm outline-none focus:border-slate-400'
-          />
-        </div>
+        <input
+          value={globalFilter}
+          onChange={(event) => setGlobalFilter(event.target.value)}
+          placeholder='Search...'
+          className='w-64 rounded-lg border border-(--app-border) bg-(--surface-primary) px-4 py-2 text-sm text-(--text-primary) outline-none placeholder:text-(--text-secondary) focus:border-(--accent-strong)'
+        />
       </div>
 
       {/* Table */}
-      <div className='flex-1 overflow-auto rounded-lg border border-slate-100'>
-        <table className='w-full text'>
-          <thead className='sticky top-0 bg-slate-50'>
+      <div className='flex-1 overflow-auto rounded-lg border border-(--app-border) bg-(--surface-primary)'>
+        <table className='w-full'>
+          <thead className='sticky top-0 bg-(--surface-secondary)'>
             {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id} className='border-b border-slate-200'>
+              <tr key={headerGroup.id} className='border-b border-(--app-border)'>
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}
                     onClick={header.column.getToggleSortingHandler()}
-                    className='cursor-pointer text-sm font-medium text-slate-600 w-[22%]'
+                    className='w-[22%] cursor-pointer text-sm font-medium text-(--text-secondary)'
                   >
                     {header.id !== 'action' && (
                       <div className='flex items-center gap-2 px-3 py-4'>
-                        <p>{flexRender(header.column.columnDef.header, header.getContext())}</p>
-                        <p>
+                        <span>
+                          {flexRender(header.column.columnDef.header, header.getContext())}
+                        </span>
+                        <span>
                           {{
                             asc: '↑',
                             desc: '↓',
                           }[header.column.getIsSorted() as string] ?? ''}
-                        </p>
+                        </span>
                       </div>
                     )}
                   </th>
@@ -130,17 +130,20 @@ const DataTable = <T extends BaseRow>({
           <tbody>
             {table.getRowModel().rows.length > 0 ? (
               table.getRowModel().rows.map((row) => (
-                <tr key={row.id} className='border-b border-slate-100 hover:bg-slate-50'>
+                <tr
+                  key={row.id}
+                  className='border-b border-(--app-border) transition-colors hover:bg-(--surface-secondary)'
+                >
                   {row.getVisibleCells().map((cell) => (
                     <td
                       key={cell.id}
-                      className='px-4 py-4 text-sm text-slate-700 cursor-pointer'
-                      onClick={() => handleViewFlow(cell.row.original.workflowName ?? '')}
+                      className='cursor-pointer px-4 py-4 text-sm text-(--text-primary)'
+                      onClick={() => handleViewFlow(cell.row.original.workflowName)}
                     >
                       {cell.column.id === 'action' ? (
                         <button
-                          onClick={() => handleViewFlow(cell.row.original.workflowName ?? '')}
-                          className='flex items-center justify-center gap-2 rounded-md bg-(--accent-soft) px-3 py-1 text-sm text-(--accent-strong) hover:bg-(--accent-soft) w-full cursor-pointer transition'
+                          onClick={() => handleViewFlow(cell.row.original.workflowName)}
+                          className='flex w-full cursor-pointer items-center justify-center gap-2 rounded-md bg-(--accent-soft) px-3 py-1 text-sm text-(--accent-strong) transition hover:opacity-90'
                         >
                           {flexRender(cell.column.columnDef.cell, cell.getContext())}
                         </button>
@@ -153,7 +156,10 @@ const DataTable = <T extends BaseRow>({
               ))
             ) : (
               <tr>
-                <td colSpan={columns.length} className='py-20 text-center text-sm text-slate-500'>
+                <td
+                  colSpan={columns.length}
+                  className='py-20 text-center text-sm text-(--text-secondary)'
+                >
                   No records found
                 </td>
               </tr>
@@ -167,7 +173,7 @@ const DataTable = <T extends BaseRow>({
         <select
           value={pagination.pageSize}
           onChange={(event) => table.setPageSize(Number(event.target.value))}
-          className='rounded-lg border border-slate-200 px-3 py-2 text-sm cursor-pointer'
+          className='cursor-pointer rounded-lg border border-(--app-border) bg-(--surface-primary) px-3 py-2 text-sm text-(--text-primary)'
         >
           <option value={10}>10</option>
           <option value={15}>15</option>
@@ -179,7 +185,7 @@ const DataTable = <T extends BaseRow>({
           <button
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
-            className='rounded-md border px-3 py-2 text-sm disabled:opacity-40 cursor-pointer'
+            className='cursor-pointer rounded-md border border-(--app-border) bg-(--surface-primary) px-3 py-2 text-sm text-(--text-primary) disabled:opacity-40'
           >
             Prev
           </button>
@@ -188,10 +194,10 @@ const DataTable = <T extends BaseRow>({
             <button
               key={page}
               onClick={() => table.setPageIndex(page - 1)}
-              className={`rounded-md px-3 py-2 text-sm cursor-pointer ${
+              className={`cursor-pointer rounded-md px-3 py-2 text-sm ${
                 pagination.pageIndex + 1 === page
-                  ? 'bg-slate-900 text-white'
-                  : 'border border-slate-200'
+                  ? 'bg-(--accent-strong) text-white'
+                  : 'border border-(--app-border) bg-(--surface-primary) text-(--text-primary)'
               }`}
             >
               {page}
@@ -201,13 +207,13 @@ const DataTable = <T extends BaseRow>({
           <button
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
-            className='rounded-md border px-3 py-2 text-sm disabled:opacity-40 cursor-pointer'
+            className='cursor-pointer rounded-md border border-(--app-border) bg-(--surface-primary) px-3 py-2 text-sm text-(--text-primary) disabled:opacity-40'
           >
             Next
           </button>
         </div>
 
-        <p className='text-sm text-slate-500'>
+        <p className='text-sm text-(--text-secondary)'>
           Page {pagination.pageIndex + 1} of {table.getPageCount()}
         </p>
       </div>
