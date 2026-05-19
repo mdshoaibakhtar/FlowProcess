@@ -23,6 +23,10 @@ type DataTableProps<T extends BaseRow> = {
   isDialog?: boolean;
   dialogComponent?: React.ReactNode;
   dialogClass?: string;
+  onView?: (record: T) => void;
+  onEdit?: (record: T) => void;
+  onRun?: (record: T) => void;
+  onDelete?: (record: T) => void;
 };
 
 const DataTable = <T extends BaseRow>({
@@ -32,6 +36,10 @@ const DataTable = <T extends BaseRow>({
   isDialog = false,
   dialogComponent,
   dialogClass,
+  onView,
+  onEdit,
+  onRun,
+  onDelete,
 }: DataTableProps<T>) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [globalFilter, setGlobalFilter] = useState('');
@@ -137,16 +145,45 @@ const DataTable = <T extends BaseRow>({
                   {row.getVisibleCells().map((cell) => (
                     <td
                       key={cell.id}
-                      className='cursor-pointer px-4 py-4 text-sm text-(--text-primary)'
-                      onClick={() => handleViewFlow(cell.row.original.workflowName)}
+                      className={`px-4 py-4 text-sm text-(--text-primary) ${
+                        cell.column.id === 'action' ? '' : 'cursor-pointer'
+                      }`}
+                      onClick={() =>
+                        cell.column.id !== 'action' &&
+                        handleViewFlow(cell.row.original.workflowName)
+                      }
                     >
                       {cell.column.id === 'action' ? (
-                        <button
-                          onClick={() => handleViewFlow(cell.row.original.workflowName)}
-                          className='flex w-full cursor-pointer items-center justify-center gap-2 rounded-md bg-(--accent-soft) px-3 py-1 text-sm text-(--accent-strong) transition hover:opacity-90'
-                        >
-                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                        </button>
+                        <div className='flex gap-2'>
+                          <button
+                            onClick={() => onView?.(cell.row.original)}
+                            className='rounded-md bg-blue-100 px-3 py-1.5 text-xs font-medium text-blue-700 transition hover:bg-blue-200'
+                            title='View'
+                          >
+                            View
+                          </button>
+                          {/* <button
+                            onClick={() => onEdit?.(cell.row.original)}
+                            className='rounded-md bg-amber-100 px-3 py-1.5 text-xs font-medium text-amber-700 transition hover:bg-amber-200'
+                            title='Edit'
+                          >
+                            Edit
+                          </button>
+                          <button
+                            onClick={() => onRun?.(cell.row.original)}
+                            className='rounded-md bg-green-100 px-3 py-1.5 text-xs font-medium text-green-700 transition hover:bg-green-200'
+                            title='Run'
+                          >
+                            Run
+                          </button>
+                          <button
+                            onClick={() => onDelete?.(cell.row.original)}
+                            className='rounded-md bg-red-100 px-3 py-1.5 text-xs font-medium text-red-700 transition hover:bg-red-200'
+                            title='Delete'
+                          >
+                            Delete
+                          </button> */}
+                        </div>
                       ) : (
                         flexRender(cell.column.columnDef.cell, cell.getContext())
                       )}
