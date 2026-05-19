@@ -1,11 +1,19 @@
 import DataTable from '../features/table/DataTable';
 import { workflowColumns } from '../features/table/workflowColumns';
-import { workflowData, type Workflow } from '../features/table/workflowData';
+import { workflowData } from '../features/table/workflowData';
+import WorkflowBuilder from '../features/workflow-builder/WorkflowBuilder';
 
 const Workflows = () => {
   return (
     <div className='w-full h-full'>
-      <DataTable<Workflow> title='Workflows' data={workflowData} columns={workflowColumns} />
+      <DataTable
+        title='Workflows'
+        data={workflowData}
+        columns={workflowColumns}
+        isDialog
+        dialogComponent={<WorkflowBuilder />}
+        dialogClass='w-full'
+      />
     </div>
   );
 };

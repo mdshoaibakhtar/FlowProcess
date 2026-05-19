@@ -10,7 +10,6 @@ type DialogScreenProps = {
   title?: ReactNode;
   body?: ReactNode;
   footer?: ReactNode;
-  width?: string;
   className?: string;
 };
 
@@ -20,7 +19,6 @@ const DialogScreen = ({
   title,
   body,
   footer,
-  width = 'max-w-lg',
   className = '',
 }: DialogScreenProps) => {
   return (
@@ -35,7 +33,6 @@ const DialogScreen = ({
           <DialogPanel
             transition
             className={`w-full transform overflow-hidden rounded-2xl bg-white shadow-xl transition-all
-              ${width}
               ${className}
               data-closed:scale-95
               data-closed:opacity-0`}

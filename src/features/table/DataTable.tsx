@@ -11,7 +11,6 @@ import {
 } from '@tanstack/react-table';
 import { useMemo, useState } from 'react';
 import DialogScreen from '../../components/common/DialogScreen';
-import WorkflowBuilder from '../workflow-builder/WorkflowBuilder';
 
 type BaseRow = {
   workflowName: string;
@@ -21,13 +20,23 @@ type DataTableProps<T extends BaseRow> = {
   title?: string;
   data: T[];
   columns: ColumnDef<T>[];
+  isDialog?: boolean;
+  dialogComponent?: React.ReactNode;
+  dialogClass?: string;
 };
 
-const DataTable = <T extends BaseRow>({ title = 'Table', data, columns }: DataTableProps<T>) => {
+const DataTable = <T extends BaseRow>({
+  title = 'Table',
+  data,
+  columns,
+  isDialog = false,
+  dialogComponent,
+  dialogClass,
+}: DataTableProps<T>) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [globalFilter, setGlobalFilter] = useState('');
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedFlow, setSelectedFlow] = useState('');
+  const [selectedRecord, setSelectedRecord] = useState('');
 
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
@@ -59,19 +68,22 @@ const DataTable = <T extends BaseRow>({ title = 'Table', data, columns }: DataTa
   );
 
   const handleViewFlow = (name: string) => {
-    setSelectedFlow(name);
+    setSelectedRecord(name);
     setIsOpen(true);
   };
 
   return (
     <div className='flex h-[85vh] flex-col rounded-2xl border border-slate-200 bg-white p-6 shadow-sm'>
-      <DialogScreen
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        title={selectedFlow ?? 'Workflow'}
-        body={<WorkflowBuilder />}
-        width='full'
-      />
+      {/* Component */}
+      {isDialog && (
+        <DialogScreen
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          title={selectedRecord}
+          body={dialogComponent}
+          className={dialogClass}
+        />
+      )}
       {/* Header */}
       <div className='mb-4 flex items-center justify-between'>
         <h2 className='text-lg font-semibold text-slate-900'>{title}</h2>
