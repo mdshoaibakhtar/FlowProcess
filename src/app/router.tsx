@@ -9,7 +9,7 @@ import ProfileSettings from '../pages/ProfileSettings';
 import KpiDetails from '../pages/KpiDetails';
 import Login from '../pages/Login';
 import Workflows from '../pages/Workflows';
-import { EmailTemplate } from '../pages/templates/EmailTemplate';
+import EmailTemplate from '../pages/templates/EmailTemplate';
 
 export const router = createBrowserRouter([
   {

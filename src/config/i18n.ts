@@ -18,6 +18,7 @@ export const translations: Record<AppLanguage, Record<string, string>> = {
     action_logout: 'Logout',
 
     page_dashboard: 'Dashboard',
+    page_email_template: 'Email Template',
     page_workflows: 'Workflows',
     page_inbox: 'Inbox',
     page_requests: 'Requests',
