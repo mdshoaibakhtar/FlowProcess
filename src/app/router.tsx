@@ -9,6 +9,7 @@ import ProfileSettings from '../pages/ProfileSettings';
 import KpiDetails from '../pages/KpiDetails';
 import Login from '../pages/Login';
 import Workflows from '../pages/Workflows';
+import { EmailTemplate } from '../pages/templates/EmailTemplate';
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +18,7 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <Dashboard /> },
       { path: 'workflows', element: <Workflows /> },
+      { path: 'templates/email', element: <EmailTemplate /> },
       { path: 'inbox', element: <Inbox /> },
       { path: 'requests', element: <Requests /> },
       { path: 'users', element: <Users /> },
