@@ -1,44 +1,50 @@
-import { createElement, type ComponentType } from 'react';
 import {
+  BarChart3,
   ClipboardList,
-  Clock3,
+  FileText,
+  History,
   Inbox,
   LayoutDashboard,
-  LineChart,
   LogOut,
-  MoonStar,
+  Mail,
+  MessageSquare,
+  Plug,
   Settings,
-  Sun,
+  ShieldCheck,
   UserCog,
   Users,
   Workflow,
-  XCircle,
-  CheckCircle2,
 } from 'lucide-react';
-import type { IconKey } from '../types/app';
+
+export const iconRegistry = {
+  layoutDashboard: LayoutDashboard,
+  workflow: Workflow,
+  fileText: FileText,
+  mail: Mail,
+  messageSquare: MessageSquare,
+  inbox: Inbox,
+  clipboardList: ClipboardList,
+  users: Users,
+  shieldCheck: ShieldCheck,
+  history: History,
+  plug: Plug,
+  barChart3: BarChart3,
+  userCog: UserCog,
+  settings: Settings,
+  logOut: LogOut,
+};
 
 type AppIconProps = {
-  name: IconKey;
+  name: keyof typeof iconRegistry;
   className?: string;
 };
 
-const iconRegistry: Record<IconKey, ComponentType<{ className?: string }>> = {
-  layoutDashboard: LayoutDashboard,
-  workflow: Workflow,
-  inbox: Inbox,
-  clipboardList: ClipboardList,
-  settings: Settings,
-  userCog: UserCog,
-  logOut: LogOut,
-  users: Users,
-  checkCircle2: CheckCircle2,
-  clock3: Clock3,
-  xCircle: XCircle,
-  lineChart: LineChart,
-  moon: MoonStar,
-  sun: Sun,
-};
-
 export const AppIcon = ({ name, className }: AppIconProps) => {
-  return createElement(iconRegistry[name], { className });
+  const Icon = iconRegistry[name];
+
+  if (!Icon) {
+    return null;
+  }
+
+  return <Icon className={className} />;
 };

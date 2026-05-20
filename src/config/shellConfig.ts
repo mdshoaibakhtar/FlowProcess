@@ -5,13 +5,16 @@ export const activeRole: AppRole = 'admin';
 export const roleShellConfig: Record<AppRole, RoleShellConfig> = {
   admin: {
     role: 'admin',
-    workspaceName: 'Processflow',
-    workspaceTagline: 'Operations Console',
+
+    workspaceName: 'FlowProcess',
+    workspaceTagline: 'Workflow Automation Platform',
+
     user: {
       name: 'Aarav Mehta',
-      email: 'aarav.mehta@processflow.io',
-      title: 'Admin',
+      email: 'aarav.mehta@flowprocess.io',
+      title: 'System Administrator',
     },
+
     navigation: [
       {
         id: 'dashboard',
@@ -20,6 +23,7 @@ export const roleShellConfig: Record<AppRole, RoleShellConfig> = {
         icon: 'layoutDashboard',
         roles: ['admin'],
       },
+
       {
         id: 'workflows',
         label: 'Workflows',
@@ -27,6 +31,33 @@ export const roleShellConfig: Record<AppRole, RoleShellConfig> = {
         icon: 'workflow',
         roles: ['admin'],
       },
+
+      {
+        id: 'templates',
+        label: 'Templates',
+        path: '/templates',
+        icon: 'fileText',
+        roles: ['admin'],
+
+        children: [
+          {
+            id: 'email-templates',
+            label: 'Email Templates',
+            path: '/templates/email',
+            icon: 'mail',
+            roles: ['admin'],
+          },
+
+          {
+            id: 'sms-templates',
+            label: 'SMS Templates',
+            path: '/templates/sms',
+            icon: 'messageSquare',
+            roles: ['admin'],
+          },
+        ],
+      },
+
       {
         id: 'inbox',
         label: 'Inbox',
@@ -34,6 +65,7 @@ export const roleShellConfig: Record<AppRole, RoleShellConfig> = {
         icon: 'inbox',
         roles: ['admin'],
       },
+
       {
         id: 'requests',
         label: 'Requests',
@@ -41,6 +73,7 @@ export const roleShellConfig: Record<AppRole, RoleShellConfig> = {
         icon: 'clipboardList',
         roles: ['admin'],
       },
+
       {
         id: 'users',
         label: 'Users',
@@ -48,7 +81,40 @@ export const roleShellConfig: Record<AppRole, RoleShellConfig> = {
         icon: 'users',
         roles: ['admin'],
       },
+
+      {
+        id: 'roles-permissions',
+        label: 'Roles & Permissions',
+        path: '/roles-permissions',
+        icon: 'shieldCheck',
+        roles: ['admin'],
+      },
+
+      {
+        id: 'audit-logs',
+        label: 'Audit Logs',
+        path: '/audit-logs',
+        icon: 'history',
+        roles: ['admin'],
+      },
+
+      {
+        id: 'integrations',
+        label: 'Integrations',
+        path: '/integrations',
+        icon: 'plug',
+        roles: ['admin'],
+      },
+
+      {
+        id: 'analytics',
+        label: 'Analytics',
+        path: '/analytics',
+        icon: 'barChart3',
+        roles: ['admin'],
+      },
     ],
+
     footerActions: [
       {
         id: 'profile-settings',
@@ -58,6 +124,7 @@ export const roleShellConfig: Record<AppRole, RoleShellConfig> = {
         variant: 'default',
         roles: ['admin'],
       },
+
       {
         id: 'settings',
         label: 'Settings',
@@ -66,6 +133,7 @@ export const roleShellConfig: Record<AppRole, RoleShellConfig> = {
         variant: 'default',
         roles: ['admin'],
       },
+
       {
         id: 'logout',
         label: 'Logout',

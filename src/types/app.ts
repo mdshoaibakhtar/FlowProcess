@@ -10,18 +10,19 @@ export type StatusChartType = 'doughnut' | 'pie';
 export type IconKey =
   | 'layoutDashboard'
   | 'workflow'
+  | 'fileText'
+  | 'mail'
+  | 'messageSquare'
   | 'inbox'
   | 'clipboardList'
-  | 'settings'
-  | 'userCog'
-  | 'logOut'
   | 'users'
-  | 'checkCircle2'
-  | 'clock3'
-  | 'xCircle'
-  | 'lineChart'
-  | 'moon'
-  | 'sun';
+  | 'shieldCheck'
+  | 'history'
+  | 'plug'
+  | 'barChart3'
+  | 'userCog'
+  | 'settings'
+  | 'logOut';
 
 export type NavigationItem = {
   id: string;
@@ -29,6 +30,7 @@ export type NavigationItem = {
   path: string;
   icon: IconKey;
   roles: AppRole[];
+  children?: NavigationItem[];
 };
 
 export type FooterAction = {

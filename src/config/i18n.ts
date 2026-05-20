@@ -7,6 +7,7 @@ export const translations: Record<AppLanguage, Record<string, string>> = {
     role_admin: 'Admin',
 
     nav_dashboard: 'Dashboard',
+    nav_templates: 'Teamplates',
     nav_workflows: 'Workflows',
     nav_inbox: 'Inbox',
     nav_requests: 'Requests',
