@@ -1,6 +1,17 @@
 import type { Edge, Node } from 'reactflow';
 
-export type WorkflowNodeKind = 'trigger' | 'sms' | 'email' | 'restApi' | 'stop' | 'other';
+export type WorkflowNodeKind =
+  | 'trigger'
+  | 'screening'
+  | 'approval'
+  | 'condition'
+  | 'assessment'
+  | 'interview'
+  | 'email'
+  | 'sms'
+  | 'offer'
+  | 'rejection'
+  | 'stop';
 
 export type WorkflowNodeData = {
   label: string;

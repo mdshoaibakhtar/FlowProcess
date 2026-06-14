@@ -14,23 +14,26 @@ type NodePaletteProps = {
 const NodePalette = ({ onDragStart, onSaveFlow, onCancelFlow }: NodePaletteProps) => {
   return (
     <aside className='flex h-full w-full flex-col border-l border-(--app-border) bg-(--surface-primary) p-4'>
-      <div className='flex-1'>
+      <div className='flex flex-col h-[89%]'>
         <h3 className='text-sm font-semibold text-(--app-text)'>Node Toolbox</h3>
         <p className='mt-1 text-xs text-(--muted-text)'>Drag any node into the canvas</p>
 
-        <div className='mt-4 space-y-2'>
-          {PALETTE_ITEMS.map((item) => (
-            <button
-              key={item.kind}
-              type='button'
-              draggable
-              onDragStart={(event) => onDragStart(event, item.kind)}
-              className='w-full cursor-grab rounded-xl border border-(--app-border) bg-(--surface-secondary) p-3 text-left transition hover:bg-(--surface-muted) active:cursor-grabbing'
-            >
-              <p className='text-sm font-semibold text-(--app-text)'>{item.label}</p>
-              <p className='mt-1 text-xs text-(--muted-text)'>{item.description}</p>
-            </button>
-          ))}
+        <div className='h-[90%] overflow-y-auto hide-scrollbar'>
+          <div className='mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2'>
+            {PALETTE_ITEMS.map((item) => (
+              <button
+                key={item.kind}
+                type='button'
+                draggable
+                onDragStart={(event) => onDragStart(event, item.kind)}
+                className='min-h-20 w-full flex flex-col items-start cursor-grab rounded-xl border border-(--app-border) bg-(--surface-secondary) p-3 text-left transition hover:bg-(--surface-muted) active:cursor-grabbing'
+              >
+                <p className='text-sm font-semibold text-(--app-text)'>{item.label}</p>
+
+                <p className='mt-1 text-xs text-(--muted-text) line-clamp-2'>{item.description}</p>
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className='mt-5 rounded-xl border border-blue-200 bg-blue-50 p-3 text-xs text-blue-900'>
