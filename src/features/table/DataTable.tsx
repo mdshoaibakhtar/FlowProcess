@@ -37,9 +37,6 @@ const DataTable = <T extends BaseRow>({
   dialogComponent,
   dialogClass,
   onView,
-  onEdit,
-  onRun,
-  onDelete,
 }: DataTableProps<T>) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [globalFilter, setGlobalFilter] = useState('');

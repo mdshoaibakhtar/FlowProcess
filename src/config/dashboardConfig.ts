@@ -29,7 +29,7 @@ export const roleDashboardConfig: Record<AppRole, DashboardConfig> = {
         value: '23',
         change: '-8% from last week',
         changeDirection: 'down',
-        icon: 'clock3',
+        icon: 'clockFading',
         tone: 'amber',
         description:
           'Approval requests currently waiting for action from assigned reviewers in the workflow chain.',

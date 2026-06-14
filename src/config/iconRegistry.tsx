@@ -14,6 +14,9 @@ import {
   UserCog,
   Users,
   Workflow,
+  ClockFading,
+  CircleCheck,
+  XCircle,
 } from 'lucide-react';
 
 export const iconRegistry = {
@@ -32,6 +35,9 @@ export const iconRegistry = {
   userCog: UserCog,
   settings: Settings,
   logOut: LogOut,
+  clockFading: ClockFading,
+  checkCircle2: CircleCheck,
+  xCircle: XCircle,
 };
 
 type AppIconProps = {

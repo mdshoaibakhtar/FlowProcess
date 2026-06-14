@@ -22,7 +22,10 @@ export type IconKey =
   | 'barChart3'
   | 'userCog'
   | 'settings'
-  | 'logOut';
+  | 'logOut'
+  | 'clockFading'
+  | 'checkCircle2'
+  | 'xCircle';
 
 export type NavigationItem = {
   id: string;
