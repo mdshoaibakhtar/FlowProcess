@@ -12,6 +12,8 @@ export const translations: Record<AppLanguage, Record<string, string>> = {
     nav_inbox: 'Inbox',
     nav_requests: 'Requests',
     nav_users: 'Users',
+    nav_analytics: 'Analytics',
+    nav_integrations: 'Integrations',
 
     action_profile_settings: 'Profile Settings',
     action_settings: 'Settings',

@@ -10,6 +10,7 @@ import KpiDetails from '../pages/KpiDetails';
 import Login from '../pages/Login';
 import Workflows from '../pages/Workflows';
 import EmailTemplate from '../pages/templates/EmailTemplate';
+import NotFound from '../components/common/NotFound';
 
 export const router = createBrowserRouter([
   {
@@ -30,5 +31,9 @@ export const router = createBrowserRouter([
   {
     path: '/login',
     element: <Login />,
+  },
+  {
+    path: '*',
+    element: <NotFound />,
   },
 ]);
