@@ -1,25 +1,25 @@
 'use client';
 
-import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react';
+import { Dialog, DialogBackdrop, DialogPanel } from '@headlessui/react';
 import { X } from 'lucide-react';
 import type { ReactNode } from 'react';
 
 type DialogScreenProps = {
   isOpen: boolean;
   onClose: (value: boolean) => void;
-  title?: ReactNode;
   body?: ReactNode;
   footer?: ReactNode;
   className?: string;
+  leftHeaderComponent?: ReactNode;
 };
 
 const DialogScreen = ({
   isOpen,
   onClose,
-  title,
   body,
   footer,
   className = '',
+  leftHeaderComponent,
 }: DialogScreenProps) => {
   return (
     <Dialog open={isOpen} onClose={onClose} className='relative z-50'>
@@ -39,12 +39,8 @@ const DialogScreen = ({
           >
             {/* Header */}
             <div className='flex w-full items-center justify-end'>
-              {title && (
-                <div className='px-6 py-4  w-full'>
-                  <DialogTitle className='text-lg font-normal text-slate-700'>{title}</DialogTitle>
-                </div>
-              )}
-              <div className='px-6 py-4 flex w-full justify-end'>
+              {leftHeaderComponent}
+              <div className='px-6 pb-2 pt-4 flex w-full justify-end'>
                 <button className='cursor-pointer' onClick={() => onClose(false)}>
                   <X color='gray' />
                 </button>

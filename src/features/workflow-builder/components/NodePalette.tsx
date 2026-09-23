@@ -18,6 +18,14 @@ const NodePalette = ({ onDragStart, onSaveFlow, onCancelFlow }: NodePaletteProps
         <h3 className='text-sm font-semibold text-(--app-text)'>Node Toolbox</h3>
         <p className='mt-1 text-xs text-(--muted-text)'>Drag any node into the canvas</p>
 
+        <div className='my-2 flex gap-2'>
+          <input
+            type='text'
+            className='flex w-full border border-(--app-border) bg-(--surface-secondary) text-(--app-text) placeholder:text-(--muted-text) px-2 py-0.5 rounded text-sm focus:outline-none focus:ring-1 focus:ring-(--accent-strong)'
+            placeholder='Enter Flow Name'
+          />
+        </div>
+
         <div className='h-[90%] overflow-y-auto hide-scrollbar'>
           <div className='mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2'>
             {PALETTE_ITEMS.map((item) => (

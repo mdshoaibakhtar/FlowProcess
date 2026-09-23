@@ -11,6 +11,7 @@ import {
 } from '@tanstack/react-table';
 import { useMemo, useState } from 'react';
 import DialogScreen from '../../components/common/DialogScreen';
+import { DialogTitle } from '@headlessui/react';
 
 type BaseRow = {
   workflowName: string;
@@ -75,13 +76,24 @@ const DataTable = <T extends BaseRow>({
     setIsOpen(true);
   };
 
+  const handleCloseDialog = () => {
+    setIsOpen(false);
+    setSelectedRecord('');
+  };
+
   return (
     <div className='flex h-[84vh] flex-col gap-4'>
       {isDialog && (
         <DialogScreen
           isOpen={isOpen}
-          onClose={() => setIsOpen(false)}
-          title={selectedRecord}
+          onClose={handleCloseDialog}
+          leftHeaderComponent={
+            <div className='px-6 pb-2 pt-4 w-full flex'>
+              <DialogTitle className='text-md font-normal text-slate-700'>
+                {selectedRecord.length !== 0 ? selectedRecord : 'Create New Flow'}
+              </DialogTitle>
+            </div>
+          }
           body={dialogComponent}
           className={dialogClass}
         />
