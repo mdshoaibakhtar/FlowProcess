@@ -175,7 +175,9 @@ const DataTable = <T extends BaseRow>({
                       }`}
                       onClick={() =>
                         cell.column.id !== 'action' &&
-                        handleViewFlow(cell.row.original.workflowName)
+                        handleViewFlow(
+                          cell.row.original.workflowName || cell.row.original.templateName || '',
+                        )
                       }
                     >
                       {cell.column.id === 'action' ? (
@@ -189,7 +191,13 @@ const DataTable = <T extends BaseRow>({
                           </button> */}
                           <button
                             // onClick={() => onEdit?.(cell.row.original)}
-                            onClick={() => handleViewFlow?.(cell.row.original?.workflowName)}
+                            onClick={() =>
+                              handleViewFlow?.(
+                                cell.row.original?.workflowName ||
+                                  cell.row.original?.templateName ||
+                                  '',
+                              )
+                            }
                             className='rounded-md bg-amber-100 px-6 py-1.5 text-xs font-medium text-amber-700 transition hover:bg-amber-200 cursor-pointer'
                             title='Edit'
                           >
