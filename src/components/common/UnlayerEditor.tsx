@@ -6,7 +6,8 @@ const EmailBuilder = () => {
   const emailEditorRef = useRef(null);
 
   // Triggered when the Unlayer editor is fully loaded
-  const onReady = (unlayer) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const onReady = (unlayer: any) => {
     console.warn('Unlayer Editor is ready', unlayer);
     // console.log('Unlayer Editor is ready', unlayer);
     // You can load a design JSON here if you have saved templates
