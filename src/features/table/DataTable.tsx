@@ -14,7 +14,8 @@ import DialogScreen from '../../components/common/DialogScreen';
 import { DialogTitle } from '@headlessui/react';
 
 type BaseRow = {
-  workflowName: string;
+  workflowName?: string;
+  templateName?: string;
 };
 
 type DataTableProps<T extends BaseRow> = {
@@ -28,6 +29,7 @@ type DataTableProps<T extends BaseRow> = {
   onEdit?: (record: T) => void;
   onRun?: (record: T) => void;
   onDelete?: (record: T) => void;
+  createNewActionButtonLabel?: string;
 };
 
 const DataTable = <T extends BaseRow>({
@@ -36,6 +38,7 @@ const DataTable = <T extends BaseRow>({
   isDialog = false,
   dialogComponent,
   dialogClass,
+  createNewActionButtonLabel = 'Create New',
 }: DataTableProps<T>) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [globalFilter, setGlobalFilter] = useState('');
@@ -90,7 +93,7 @@ const DataTable = <T extends BaseRow>({
           leftHeaderComponent={
             <div className='px-6 pb-2 pt-4 w-full flex'>
               <DialogTitle className='text-md font-normal text-slate-700'>
-                {selectedRecord.length !== 0 ? selectedRecord : 'Create New Flow'}
+                {selectedRecord.length !== 0 ? selectedRecord : createNewActionButtonLabel}
               </DialogTitle>
             </div>
           }
@@ -121,7 +124,7 @@ const DataTable = <T extends BaseRow>({
             className='border text-(--accent-strong) px-4 rounded-md cursor-pointer shadow-sm text-sm'
             onClick={() => setIsOpen(true)}
           >
-            Create New Flow
+            {createNewActionButtonLabel}
           </button>
         </div>
       </div>
@@ -176,7 +179,7 @@ const DataTable = <T extends BaseRow>({
                       }
                     >
                       {cell.column.id === 'action' ? (
-                        <div className='flex gap-2'>
+                        <div className='flex gap-4'>
                           {/* <button
                             onClick={() => handleViewFlow?.(cell.row.original?.workflowName)}
                             className='rounded-md text-(--accent-strong) px-3 py-1.5 text-xs font-medium border w-36 transition cursor-pointer'
@@ -187,21 +190,14 @@ const DataTable = <T extends BaseRow>({
                           <button
                             // onClick={() => onEdit?.(cell.row.original)}
                             onClick={() => handleViewFlow?.(cell.row.original?.workflowName)}
-                            className='rounded-md bg-amber-100 px-3 py-1.5 text-xs font-medium text-amber-700 transition hover:bg-amber-200 cursor-pointer'
+                            className='rounded-md bg-amber-100 px-6 py-1.5 text-xs font-medium text-amber-700 transition hover:bg-amber-200 cursor-pointer'
                             title='Edit'
                           >
                             Edit
                           </button>
                           <button
-                            // onClick={() => onRun?.(cell.row.original)}
-                            className='rounded-md bg-green-100 px-3 py-1.5 text-xs font-medium text-green-700 transition hover:bg-green-200 cursor-pointer'
-                            title='Run'
-                          >
-                            Run
-                          </button>
-                          <button
                             // onClick={() => onDelete?.(cell.row.original)}
-                            className='rounded-md bg-red-100 px-3 py-1.5 text-xs font-medium text-red-700 transition hover:bg-red-200 cursor-pointer'
+                            className='rounded-md bg-red-100 px-6 py-1.5 text-xs font-medium text-red-700 transition hover:bg-red-200 cursor-pointer'
                             title='Delete'
                           >
                             Delete

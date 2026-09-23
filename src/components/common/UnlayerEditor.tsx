@@ -39,10 +39,15 @@ const EmailBuilder = () => {
 
   return (
     <div className='border border-gray-100 rounded-xl overflow-hidden'>
-      <div className='flex justify-end items-center px-1 py-2 bg-gray-200'>
+      <div className='flex justify-between items-center px-1 py-2 bg-gray-200'>
+        <input
+          type='text'
+          className='flex w-1/4 border border-(--app-border) bg-(--surface-secondary) text-(--app-text) placeholder:text-(--muted-text) px-2 h-10 rounded text-sm focus:outline-none focus:ring-1 focus:ring-(--accent-strong)'
+          placeholder='Enter Template Name'
+        />
         <button
           onClick={exportHtml}
-          className='px-4 py-2 bg-white text-(--accent-strong) rounded border transition cursor-pointer'
+          className='px-4 py-2 w-1/8 bg-white text-(--accent-strong) rounded border transition cursor-pointer'
         >
           Export HTML
           <Download className='inline-block ml-2 w-4 h-4' />
@@ -62,6 +67,20 @@ const EmailBuilder = () => {
             },
           }}
         />
+      </div>
+      <div className='flex justify-between px-2 py-4'>
+        <p className='text-xs text-gray-500'>
+          Note: The Unlayer editor is a third-party library. Please refer to their documentation for
+          more details.
+        </p>
+        <div className='flex gap-2 w-1/2 justify-end'>
+          <button className='flex justify-center items-center py-2 border w-1/4 rounded transition cursor-pointer bg-(--accent-strong) text-white border-(--accent-strong)'>
+            Save
+          </button>
+          <button className='flex justify-center items-center py-2 border w-1/4 rounded text-(--accent-strong) bg-(--accent-light) transition cursor-pointer'>
+            Cancel
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -7,6 +7,15 @@ export type Workflow = {
   action: string;
 };
 
+export type Template = {
+  id: number;
+  templateName: string;
+  createdAt: string;
+  lastModifiedBy: string;
+  lastModifiedDate: string;
+  action: string;
+};
+
 const users = [
   'John Doe',
   'Sarah Smith',
@@ -36,6 +45,31 @@ export const workflowData: Workflow[] = Array.from({ length: 100 }, (_, index) =
   return {
     id: index + 1,
     workflowName: `Workflow ${index + 1}`,
+    createdAt: createdDate.toLocaleDateString(),
+    lastModifiedBy: randomUser,
+    lastModifiedDate: modifiedDate.toLocaleDateString(),
+    action: 'View',
+  };
+});
+
+export const templateData: Template[] = Array.from({ length: 100 }, (_, index) => {
+  const randomUser = users[Math.floor(Math.random() * users.length)];
+
+  const createdDate = new Date(
+    2025,
+    Math.floor(Math.random() * 12),
+    Math.floor(Math.random() * 28) + 1,
+  );
+
+  const modifiedDate = new Date(
+    2026,
+    Math.floor(Math.random() * 5),
+    Math.floor(Math.random() * 28) + 1,
+  );
+
+  return {
+    id: index + 1,
+    templateName: `Email Template ${index + 1}`,
     createdAt: createdDate.toLocaleDateString(),
     lastModifiedBy: randomUser,
     lastModifiedDate: modifiedDate.toLocaleDateString(),

@@ -18,6 +18,7 @@ const pageTitleKeyMap: Record<string, string> = {
   '/users': 'page_users',
   '/settings': 'page_settings',
   '/profile-settings': 'page_profile_settings',
+  '/templates/email': 'page_email_template',
 };
 
 const Header = ({ currentUser, currentTheme, onMenuClick, onToggleTheme, t }: HeaderProps) => {
