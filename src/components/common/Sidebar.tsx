@@ -50,7 +50,7 @@ const Sidebar = ({
   t,
 }: SidebarProps) => {
   const [expandedMenus, setExpandedMenus] = useState<Record<string, boolean>>({
-    templates: true,
+    templates: false,
   });
 
   const navigationItems = roleConfig.navigation.filter((item) =>
