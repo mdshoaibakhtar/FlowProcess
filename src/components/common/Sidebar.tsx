@@ -262,13 +262,17 @@ const Sidebar = ({
                   key={action.id}
                   type='button'
                   onClick={onLogout}
-                  className={`${sharedClassName} flex w-full ${
+                  className={`${sharedClassName} flex w-full cursor-pointer ${
                     isCollapsed ? 'justify-center' : 'justify-start'
                   }`}
                 >
-                  <AppIcon name={action.icon} className='size-4 shrink-0' />
+                  <AppIcon name={action.icon} className='size-4 shrink-0 text-(--accent-strong)' />
 
-                  {!isCollapsed && <span>{t(actionLabelKeyMap[action.id] ?? action.label)}</span>}
+                  {!isCollapsed && (
+                    <span className='text-(--accent-strong)'>
+                      {t(actionLabelKeyMap[action.id] ?? action.label)}
+                    </span>
+                  )}
                 </button>
               );
             })}

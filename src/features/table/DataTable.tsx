@@ -30,7 +30,6 @@ type DataTableProps<T extends BaseRow> = {
 };
 
 const DataTable = <T extends BaseRow>({
-  title = 'Table',
   data,
   columns,
   isDialog = false,
@@ -77,7 +76,7 @@ const DataTable = <T extends BaseRow>({
   };
 
   return (
-    <div className='flex h-[85vh] flex-col rounded-2xl border border-(--app-border) bg-(--surface-secondary) p-6 shadow-sm'>
+    <div className='flex h-[84vh] flex-col gap-4'>
       {isDialog && (
         <DialogScreen
           isOpen={isOpen}
@@ -88,9 +87,15 @@ const DataTable = <T extends BaseRow>({
         />
       )}
 
+      {/* <section className='grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4'>
+        {dashboard.kpis.map((metric) => (
+          <KpiCard key={metric.id} metric={metric} />
+        ))}
+      </section> */}
+
       {/* Header */}
-      <div className='mb-4 flex items-center justify-between'>
-        <h2 className='text-lg font-semibold text-(--text-primary)'>{title}</h2>
+      <div className='flex items-center justify-end'>
+        {/* <h2 className='text-lg font-semibold text-(--text-primary)'>{title}</h2> */}
 
         <div className='flex gap-2'>
           <input
@@ -110,16 +115,16 @@ const DataTable = <T extends BaseRow>({
       </div>
 
       {/* Table */}
-      <div className='flex-1 overflow-auto rounded-lg border border-(--app-border) bg-(--surface-primary)'>
+      <div className='flex-1 overflow-auto rounded-lg border border-(--app-border) bg-(--surface-primary) shadow-sm'>
         <table className='w-full'>
-          <thead className='sticky top-0 bg-(--surface-secondary)'>
+          <thead className='sticky top-0 bg-(--accent-soft)'>
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id} className='border-b border-(--app-border)'>
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}
                     onClick={header.column.getToggleSortingHandler()}
-                    className='w-[22%] cursor-pointer text-sm font-medium text-(--text-secondary)'
+                    className='w-[22%] cursor-pointer text-sm font-medium text-(--accent-strong)'
                   >
                     {header.id !== 'action' && (
                       <div className='flex items-center gap-2 px-3 py-4'>
@@ -160,34 +165,35 @@ const DataTable = <T extends BaseRow>({
                     >
                       {cell.column.id === 'action' ? (
                         <div className='flex gap-2'>
-                          <button
+                          {/* <button
                             onClick={() => handleViewFlow?.(cell.row.original?.workflowName)}
                             className='rounded-md text-(--accent-strong) px-3 py-1.5 text-xs font-medium border w-36 transition cursor-pointer'
                             title='View'
                           >
                             View
-                          </button>
-                          {/* <button
-                            onClick={() => onEdit?.(cell.row.original)}
-                            className='rounded-md bg-amber-100 px-3 py-1.5 text-xs font-medium text-amber-700 transition hover:bg-amber-200'
+                          </button> */}
+                          <button
+                            // onClick={() => onEdit?.(cell.row.original)}
+                            onClick={() => handleViewFlow?.(cell.row.original?.workflowName)}
+                            className='rounded-md bg-amber-100 px-3 py-1.5 text-xs font-medium text-amber-700 transition hover:bg-amber-200 cursor-pointer'
                             title='Edit'
                           >
                             Edit
                           </button>
                           <button
-                            onClick={() => onRun?.(cell.row.original)}
-                            className='rounded-md bg-green-100 px-3 py-1.5 text-xs font-medium text-green-700 transition hover:bg-green-200'
+                            // onClick={() => onRun?.(cell.row.original)}
+                            className='rounded-md bg-green-100 px-3 py-1.5 text-xs font-medium text-green-700 transition hover:bg-green-200 cursor-pointer'
                             title='Run'
                           >
                             Run
                           </button>
                           <button
-                            onClick={() => onDelete?.(cell.row.original)}
-                            className='rounded-md bg-red-100 px-3 py-1.5 text-xs font-medium text-red-700 transition hover:bg-red-200'
+                            // onClick={() => onDelete?.(cell.row.original)}
+                            className='rounded-md bg-red-100 px-3 py-1.5 text-xs font-medium text-red-700 transition hover:bg-red-200 cursor-pointer'
                             title='Delete'
                           >
                             Delete
-                          </button> */}
+                          </button>
                         </div>
                       ) : (
                         flexRender(cell.column.columnDef.cell, cell.getContext())
