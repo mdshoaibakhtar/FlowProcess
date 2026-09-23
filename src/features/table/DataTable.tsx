@@ -36,7 +36,6 @@ const DataTable = <T extends BaseRow>({
   isDialog = false,
   dialogComponent,
   dialogClass,
-  onView,
 }: DataTableProps<T>) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [globalFilter, setGlobalFilter] = useState('');
@@ -93,12 +92,21 @@ const DataTable = <T extends BaseRow>({
       <div className='mb-4 flex items-center justify-between'>
         <h2 className='text-lg font-semibold text-(--text-primary)'>{title}</h2>
 
-        <input
-          value={globalFilter}
-          onChange={(event) => setGlobalFilter(event.target.value)}
-          placeholder='Search...'
-          className='w-64 rounded-lg border border-(--app-border) bg-(--surface-primary) px-4 py-2 text-sm text-(--text-primary) outline-none placeholder:text-(--text-secondary) focus:border-(--accent-strong)'
-        />
+        <div className='flex gap-2'>
+          <input
+            value={globalFilter}
+            onChange={(event) => setGlobalFilter(event.target.value)}
+            placeholder='Search...'
+            className='w-64 shadow-sm rounded-lg border border-(--app-border) bg-(--surface-primary) px-4 py-2 text-sm text-(--text-primary) outline-none placeholder:text-(--text-secondary) focus:border-(--accent-strong)'
+          />
+
+          <button
+            className='border text-(--accent-strong) px-4 rounded-md cursor-pointer shadow-sm text-sm'
+            onClick={() => setIsOpen(true)}
+          >
+            Create New Flow
+          </button>
+        </div>
       </div>
 
       {/* Table */}
@@ -153,8 +161,8 @@ const DataTable = <T extends BaseRow>({
                       {cell.column.id === 'action' ? (
                         <div className='flex gap-2'>
                           <button
-                            onClick={() => onView?.(cell.row.original)}
-                            className='rounded-md bg-blue-100 px-3 py-1.5 text-xs font-medium text-blue-700 transition hover:bg-blue-200'
+                            onClick={() => handleViewFlow?.(cell.row.original?.workflowName)}
+                            className='rounded-md text-(--accent-strong) px-3 py-1.5 text-xs font-medium border w-36 transition cursor-pointer'
                             title='View'
                           >
                             View
