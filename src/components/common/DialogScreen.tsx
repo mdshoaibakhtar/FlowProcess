@@ -32,7 +32,7 @@ const DialogScreen = ({
         <div className='flex min-h-full items-center justify-center p-4'>
           <DialogPanel
             transition
-            className={`w-full transform overflow-hidden rounded-2xl bg-white shadow-xl transition-all
+            className={`w-full transform overflow-hidden rounded-md bg-white shadow-xl transition-all
               ${className}
               data-closed:scale-95
               data-closed:opacity-0`}

@@ -34,7 +34,7 @@ const Header = ({ currentUser, currentTheme, onMenuClick, onToggleTheme, t }: He
           <button
             type='button'
             onClick={onMenuClick}
-            className='cursor-pointer rounded-lg p-2 text-(--muted-text) transition hover:bg-(--surface-muted) hover:text-(--app-text) md:hidden'
+            className='cursor-pointer rounded-md p-2 text-(--muted-text) transition hover:bg-(--surface-muted) hover:text-(--app-text) md:hidden'
             aria-label='Open sidebar'
           >
             <Menu className='size-5' />
@@ -52,7 +52,7 @@ const Header = ({ currentUser, currentTheme, onMenuClick, onToggleTheme, t }: He
           <button
             type='button'
             onClick={onToggleTheme}
-            className='inline-flex cursor-pointer items-center justify-center rounded-lg border border-(--app-border) bg-(--surface-secondary) p-2 text-(--muted-text) transition hover:text-(--app-text)'
+            className='inline-flex cursor-pointer items-center justify-center rounded-md border border-(--app-border) bg-(--surface-secondary) p-2 text-(--muted-text) transition hover:text-(--app-text)'
             aria-label={t('toggle_theme')}
             title={currentTheme === 'light' ? t('switch_dark') : t('switch_light')}
           >

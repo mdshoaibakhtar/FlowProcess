@@ -117,7 +117,7 @@ const DataTable = <T extends BaseRow>({
             value={globalFilter}
             onChange={(event) => setGlobalFilter(event.target.value)}
             placeholder='Search...'
-            className='w-64 shadow-sm rounded-lg border border-(--app-border) bg-(--surface-primary) px-4 py-2 text-sm text-(--text-primary) outline-none placeholder:text-(--text-secondary) focus:border-(--accent-strong)'
+            className='w-64 shadow-sm rounded-md border border-(--app-border) bg-(--surface-primary) px-4 py-2 text-sm text-(--text-primary) outline-none placeholder:text-(--text-secondary) focus:border-(--accent-strong)'
           />
 
           <button
@@ -130,7 +130,7 @@ const DataTable = <T extends BaseRow>({
       </div>
 
       {/* Table */}
-      <div className='flex-1 overflow-auto rounded-lg border border-(--app-border) bg-(--surface-primary) shadow-sm'>
+      <div className='flex-1 overflow-auto rounded-md border border-(--app-border) bg-(--surface-primary) shadow-sm'>
         <table className='w-full'>
           <thead className='sticky top-0 bg-(--accent-soft)'>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -237,7 +237,7 @@ const DataTable = <T extends BaseRow>({
         <select
           value={pagination.pageSize}
           onChange={(event) => table.setPageSize(Number(event.target.value))}
-          className='cursor-pointer rounded-lg border border-(--app-border) bg-(--surface-primary) px-3 py-2 text-sm text-(--text-primary)'
+          className='cursor-pointer rounded-md border border-(--app-border) bg-(--surface-primary) px-3 py-2 text-sm text-(--text-primary)'
         >
           <option value={10}>10</option>
           <option value={15}>15</option>

@@ -19,7 +19,7 @@ const NotFound: React.FC<NotFoundProps> = ({
         <div>
           <button
             type='button'
-            className='bg-gray-500 text-white py-1 px-4 rounded hover:bg-gray-600 transition-colors cursor-pointer'
+            className='bg-gray-500 text-white py-1 px-4 rounded-md hover:bg-gray-600 transition-colors cursor-pointer'
             onClick={() => {
               window.location.href = '/';
             }}
