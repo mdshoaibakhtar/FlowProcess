@@ -20,7 +20,7 @@ const ContactPanel = ({ chatId }: ContactPanelProps) => {
         <p className='text-sm text-slate-400'>Select a conversation to see contact details.</p>
       )}
 
-      {contact && (
+      {contact && !isLoading && (
         <div className='space-y-5'>
           <ContactHeader contact={contact} />
           <ContactActions />

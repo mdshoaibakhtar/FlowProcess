@@ -14,11 +14,11 @@ const sizeClasses: Record<NonNullable<AvatarProps['size']>, string> = {
 const AvatarIcon = ({ avatar, size = 'md' }: AvatarProps) => {
   const base = `${sizeClasses[size]} shrink-0 rounded-full flex items-center justify-center font-medium text-white overflow-hidden`;
 
-  if (avatar.url) {
+  if (avatar?.url) {
     return <img src={avatar.url} alt='' className={`${base} object-cover`} />;
   }
 
-  return <div className={`${base} ${avatar.colorClass ?? 'bg-slate-400'}`}>{avatar.initial}</div>;
+  return <div className={`${base} ${avatar?.colorClass ?? 'bg-slate-400'}`}>{avatar?.initial}</div>;
 };
 
 export default AvatarIcon;
