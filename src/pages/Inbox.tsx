@@ -1,12 +1,13 @@
-import { useAppLayoutContext } from '../hooks/useAppLayoutContext';
+import ChatWindow from '../components/inbox/ChatWindow/ChatWindow';
+import ContactPanel from '../components/inbox/ContactPanel/ContactPanel';
+import ChatSidebar from '../components/inbox/Sidebar/ChatSidebar';
 
 const Inbox = () => {
-  const { t } = useAppLayoutContext();
-
   return (
-    <div className='rounded-2xl border border-(--app-border) bg-(--surface-primary) p-6'>
-      <h1 className='text-2xl font-semibold text-(--app-text)'>{t('page_inbox')}</h1>
-      <p className='mt-2 text-(--muted-text)'>{t('inbox_description')}</p>
+    <div className='rounded-md border border-(--app-border) bg-(--surface-primary) flex p-0.5'>
+      <ChatSidebar activeChatId={'chat-mike'} onSelectChat={() => console.warn('Help')} />
+      <ChatWindow chatId={'chat-mike'} contact={null} />
+      <ContactPanel chatId={'chat-mike'} />
     </div>
   );
 };
