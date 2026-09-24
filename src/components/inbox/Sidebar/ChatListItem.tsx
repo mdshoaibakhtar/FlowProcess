@@ -12,7 +12,7 @@ const ChatListItem = ({ chat, isActive, onSelect }: ChatListItemProps) => {
   return (
     <button
       onClick={() => onSelect(chat.id)}
-      className={`flex w-full items-center gap-3 rounded-lg px-2 py-2 text-left transition-colors ${
+      className={`flex w-full items-center gap-3 rounded-lg px-2 py-2 text-left transition-colors cursor-pointer ${
         isActive ? 'bg-indigo-50' : 'hover:bg-slate-50'
       }`}
     >

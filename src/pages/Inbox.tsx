@@ -6,17 +6,18 @@ import { mockContactDetails } from '../data/mockData';
 
 const Inbox = () => {
   const [showContactPanel, setShowContactPanel] = useState<boolean>(false);
+  const [activeChatId, setActiveChatId] = useState<string>('chat-mike');
   return (
-    <div className='rounded-md border border-(--app-border) bg-(--surface-primary) flex p-0.5'>
-      <ChatSidebar activeChatId={'chat-mike'} onSelectChat={() => console.warn('Help')} />
+    <div className='rounded-md border border-(--app-border) bg-(--surface-primary) flex p-0.5 h-[86vh]'>
+      <ChatSidebar activeChatId={activeChatId} onSelectChat={(chatId) => setActiveChatId(chatId)} />
       <ChatWindow
-        chatId={'chat-mike'}
-        contact={mockContactDetails['chat-mike']}
+        chatId={activeChatId}
+        contact={mockContactDetails[activeChatId]}
         showContactPanel={showContactPanel}
         setShowContactPanel={setShowContactPanel}
       />
       <Activity mode={showContactPanel ? 'visible' : 'hidden'}>
-        <ContactPanel chatId={'chat-mike'} />
+        <ContactPanel chatId={activeChatId} />
       </Activity>
     </div>
   );

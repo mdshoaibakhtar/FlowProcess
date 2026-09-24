@@ -1,14 +1,10 @@
-// NOTE: This file is the ONLY place with hardcoded data. When the backend is
-// ready, delete this file and point `services/api.ts` at real endpoints —
-// nothing else in the app needs to change.
-
 import type { ChatCounts, ChatListItemData, ContactDetails, MessageGroup } from '../types';
 
 export const mockChatCounts: ChatCounts = {
-  all: 30,
-  unread: 10,
-  draft: 4,
-  archived: 5,
+  all: 50,
+  unread: 14,
+  draft: 6,
+  archived: 8,
 };
 
 export const mockPinnedChats: ChatListItemData[] = [
@@ -16,7 +12,7 @@ export const mockPinnedChats: ChatListItemData[] = [
     id: 'chat-dianne',
     name: 'Dianne Russell',
     avatar: { initial: 'D', colorClass: 'bg-rose-400' },
-    lastMessage: 'Yes, I can. Thanks you for th...',
+    lastMessage: 'Yes, I can. Thanks you for the update.',
     time: '10:00',
     unreadCount: 2,
     isPinned: true,
@@ -33,8 +29,17 @@ export const mockPinnedChats: ChatListItemData[] = [
     id: 'chat-tony',
     name: 'Tony Stark',
     avatar: { initial: 'T', colorClass: 'bg-amber-500' },
-    lastMessage: "Hey there! I'm new here and rea...",
+    lastMessage: "Hey there! I'm new here and really curious...",
     time: '11:47',
+    isPinned: true,
+  },
+  {
+    id: 'chat-sarah',
+    name: 'Sarah Wilson',
+    avatar: { initial: 'S', colorClass: 'bg-violet-500' },
+    lastMessage: 'The product requirements are ready.',
+    time: '12:15',
+    unreadCount: 3,
     isPinned: true,
   },
 ];
@@ -52,21 +57,21 @@ export const mockRecentChats: ChatListItemData[] = [
     id: 'chat-waker',
     name: 'Waker Den',
     avatar: { initial: 'W', colorClass: 'bg-slate-500' },
-    lastMessage: "Hi! I'm currently working on pro...",
+    lastMessage: "Hi! I'm currently working on the project...",
     time: '02:30',
   },
   {
     id: 'chat-henry',
     name: 'Henry Cavil',
     avatar: { initial: 'H', colorClass: 'bg-purple-500' },
-    lastMessage: 'Yes, I saw your message. I w...',
+    lastMessage: 'Yes, I saw your message. I will check it.',
     time: '03:00',
   },
   {
     id: 'chat-john-harry',
     name: 'John Harry',
     avatar: { initial: 'J', colorClass: 'bg-cyan-600' },
-    lastMessage: 'Hello! Thank you for the produc...',
+    lastMessage: 'Hello! Thank you for the product update.',
     time: '03:25',
     unreadCount: 2,
   },
@@ -74,7 +79,7 @@ export const mockRecentChats: ChatListItemData[] = [
     id: 'chat-lio',
     name: 'Lio Ven',
     avatar: { initial: 'L', colorClass: 'bg-pink-500' },
-    lastMessage: 'Please check the document an...',
+    lastMessage: 'Please check the document and let me know.',
     time: '04:47',
     unreadCount: 2,
   },
@@ -82,19 +87,70 @@ export const mockRecentChats: ChatListItemData[] = [
     id: 'chat-wick',
     name: 'John Wick',
     avatar: { initial: 'J', colorClass: 'bg-neutral-700' },
-    lastMessage: 'Hey there! This Video is record...',
+    lastMessage: 'Hey there! This video is ready for review.',
     time: '06:10',
   },
   {
     id: 'chat-franzen',
     name: 'Franzen Den',
     avatar: { initial: 'F', colorClass: 'bg-orange-500' },
-    lastMessage: 'Yes, I can. Thanks you for th...',
+    lastMessage: 'Yes, I can. Thanks for the information.',
     time: '06:22',
+  },
+  {
+    id: 'chat-emma',
+    name: 'Emma Watson',
+    avatar: { initial: 'E', colorClass: 'bg-indigo-500' },
+    lastMessage: 'Can we schedule a meeting tomorrow?',
+    time: '07:10',
+    unreadCount: 1,
+  },
+  {
+    id: 'chat-daniel',
+    name: 'Daniel Cooper',
+    avatar: { initial: 'D', colorClass: 'bg-teal-500' },
+    lastMessage: 'I have uploaded the latest version.',
+    time: '07:45',
+  },
+  {
+    id: 'chat-olivia',
+    name: 'Olivia Martin',
+    avatar: { initial: 'O', colorClass: 'bg-fuchsia-500' },
+    lastMessage: 'Thanks! That looks perfect.',
+    time: '08:12',
+    unreadCount: 4,
+  },
+  {
+    id: 'chat-liam',
+    name: 'Liam Anderson',
+    avatar: { initial: 'L', colorClass: 'bg-green-600' },
+    lastMessage: 'I will get back to you shortly.',
+    time: '08:35',
+  },
+  {
+    id: 'chat-sophia',
+    name: 'Sophia Taylor',
+    avatar: { initial: 'S', colorClass: 'bg-yellow-500' },
+    lastMessage: 'The client has approved the changes.',
+    time: '09:05',
+    unreadCount: 1,
+  },
+  {
+    id: 'chat-noah',
+    name: 'Noah Williams',
+    avatar: { initial: 'N', colorClass: 'bg-red-500' },
+    lastMessage: 'Can you send me the report?',
+    time: '09:30',
+  },
+  {
+    id: 'chat-isabella',
+    name: 'Isabella Brown',
+    avatar: { initial: 'I', colorClass: 'bg-lime-600' },
+    lastMessage: 'Let me know when you are available.',
+    time: '09:45',
   },
 ];
 
-// Keyed by chat id so `getConversation(chatId)` can look it up.
 export const mockConversations: Record<string, MessageGroup[]> = {
   'chat-mike': [
     {
@@ -119,23 +175,239 @@ export const mockConversations: Record<string, MessageGroup[]> = {
       ],
     },
     {
-      date: '14 April',
+      date: '15 April',
       messages: [
         {
           id: 'm3',
           senderName: 'Mike Banner',
           avatar: { initial: 'M', colorClass: 'bg-blue-500' },
-          time: '05:00 pm',
+          time: '09:15 am',
           isOwnMessage: false,
-          text: 'That sounds interesting! So, does that mean I can create designs that are both beautiful and environmentally responsible? I found a project idea, what do you think?',
+          text: 'That sounds interesting! So, does that mean I can create designs that are both beautiful and environmentally responsible?',
         },
         {
           id: 'm4',
           senderName: 'Harry Potter',
           avatar: { initial: 'H', colorClass: 'bg-amber-600' },
-          time: '05:00 pm',
+          time: '09:20 am',
           isOwnMessage: true,
-          text: 'Exactly! By applying sustainable design principles, you can develop creative solutions that are both functional and eco-conscious. It offers more innovation and responsibility in design.',
+          text: 'Exactly! By applying sustainable design principles, you can develop creative solutions that are both functional and eco-conscious.',
+        },
+        {
+          id: 'm5',
+          senderName: 'Mike Banner',
+          avatar: { initial: 'M', colorClass: 'bg-blue-500' },
+          time: '09:24 am',
+          isOwnMessage: false,
+          text: 'I found a project idea around sustainable packaging. I think it could be a good starting point.',
+        },
+        {
+          id: 'm6',
+          senderName: 'Harry Potter',
+          avatar: { initial: 'H', colorClass: 'bg-amber-600' },
+          time: '09:27 am',
+          isOwnMessage: true,
+          text: 'That sounds like a great idea. We can discuss the requirements and create a small prototype first.',
+        },
+      ],
+    },
+  ],
+
+  'chat-dianne': [
+    {
+      date: '18 April',
+      messages: [
+        {
+          id: 'd1',
+          senderName: 'Dianne Russell',
+          avatar: { initial: 'D', colorClass: 'bg-rose-400' },
+          time: '09:45 am',
+          isOwnMessage: false,
+          text: 'Hi Harry, were you able to review the latest requirements?',
+        },
+        {
+          id: 'd2',
+          senderName: 'Harry Potter',
+          avatar: { initial: 'H', colorClass: 'bg-amber-600' },
+          time: '09:50 am',
+          isOwnMessage: true,
+          text: 'Yes, I reviewed them this morning. Everything looks good from my side.',
+        },
+        {
+          id: 'd3',
+          senderName: 'Dianne Russell',
+          avatar: { initial: 'D', colorClass: 'bg-rose-400' },
+          time: '09:52 am',
+          isOwnMessage: false,
+          text: 'Perfect. I will share the updated document with the team.',
+        },
+        {
+          id: 'd4',
+          senderName: 'Harry Potter',
+          avatar: { initial: 'H', colorClass: 'bg-amber-600' },
+          time: '09:55 am',
+          isOwnMessage: true,
+          text: 'Sounds good. Please let me know if you need anything from me.',
+        },
+      ],
+    },
+  ],
+
+  'chat-tony': [
+    {
+      date: '20 April',
+      messages: [
+        {
+          id: 't1',
+          senderName: 'Tony Stark',
+          avatar: { initial: 'T', colorClass: 'bg-amber-500' },
+          time: '11:30 am',
+          isOwnMessage: false,
+          text: 'Hey Harry! I just joined the team. Nice to meet you.',
+        },
+        {
+          id: 't2',
+          senderName: 'Harry Potter',
+          avatar: { initial: 'H', colorClass: 'bg-amber-600' },
+          time: '11:32 am',
+          isOwnMessage: true,
+          text: 'Hey Tony! Welcome to the team. Let me know if you need any help getting started.',
+        },
+        {
+          id: 't3',
+          senderName: 'Tony Stark',
+          avatar: { initial: 'T', colorClass: 'bg-amber-500' },
+          time: '11:40 am',
+          isOwnMessage: false,
+          text: 'Thanks! I am currently going through the project documentation.',
+        },
+      ],
+    },
+  ],
+
+  'chat-jordan': [
+    {
+      date: '21 April',
+      messages: [
+        {
+          id: 'j1',
+          senderName: 'Jordan Smith',
+          avatar: { initial: 'J', colorClass: 'bg-emerald-500' },
+          time: '12:20 pm',
+          isOwnMessage: false,
+          text: 'Hi Harry, just a quick reminder about our meeting today.',
+        },
+        {
+          id: 'j2',
+          senderName: 'Harry Potter',
+          avatar: { initial: 'H', colorClass: 'bg-amber-600' },
+          time: '12:25 pm',
+          isOwnMessage: true,
+          text: 'Thanks for reminding me. I have added it to my calendar.',
+        },
+        {
+          id: 'j3',
+          senderName: 'Jordan Smith',
+          avatar: { initial: 'J', colorClass: 'bg-emerald-500' },
+          time: '12:28 pm',
+          isOwnMessage: false,
+          text: 'Great. I will send the agenda before the meeting.',
+        },
+      ],
+    },
+  ],
+
+  'chat-sarah': [
+    {
+      date: '22 April',
+      messages: [
+        {
+          id: 's1',
+          senderName: 'Sarah Wilson',
+          avatar: { initial: 'S', colorClass: 'bg-violet-500' },
+          time: '12:05 pm',
+          isOwnMessage: false,
+          text: 'The product requirements are ready for review.',
+        },
+        {
+          id: 's2',
+          senderName: 'Harry Potter',
+          avatar: { initial: 'H', colorClass: 'bg-amber-600' },
+          time: '12:08 pm',
+          isOwnMessage: true,
+          text: 'Thanks Sarah. I will go through them today.',
+        },
+        {
+          id: 's3',
+          senderName: 'Sarah Wilson',
+          avatar: { initial: 'S', colorClass: 'bg-violet-500' },
+          time: '12:12 pm',
+          isOwnMessage: false,
+          text: 'Please pay special attention to the new workflow requirements.',
+        },
+      ],
+    },
+  ],
+
+  'chat-emma': [
+    {
+      date: '22 April',
+      messages: [
+        {
+          id: 'e1',
+          senderName: 'Emma Watson',
+          avatar: { initial: 'E', colorClass: 'bg-indigo-500' },
+          time: '07:05 pm',
+          isOwnMessage: false,
+          text: 'Can we schedule a meeting tomorrow to discuss the dashboard?',
+        },
+        {
+          id: 'e2',
+          senderName: 'Harry Potter',
+          avatar: { initial: 'H', colorClass: 'bg-amber-600' },
+          time: '07:10 pm',
+          isOwnMessage: true,
+          text: 'Sure. I am available after 2 PM tomorrow.',
+        },
+      ],
+    },
+  ],
+
+  'chat-olivia': [
+    {
+      date: '22 April',
+      messages: [
+        {
+          id: 'o1',
+          senderName: 'Olivia Martin',
+          avatar: { initial: 'O', colorClass: 'bg-fuchsia-500' },
+          time: '08:00 pm',
+          isOwnMessage: false,
+          text: 'I have reviewed the latest dashboard changes.',
+        },
+        {
+          id: 'o2',
+          senderName: 'Harry Potter',
+          avatar: { initial: 'H', colorClass: 'bg-amber-600' },
+          time: '08:05 pm',
+          isOwnMessage: true,
+          text: 'Great. Did everything look okay?',
+        },
+        {
+          id: 'o3',
+          senderName: 'Olivia Martin',
+          avatar: { initial: 'O', colorClass: 'bg-fuchsia-500' },
+          time: '08:08 pm',
+          isOwnMessage: false,
+          text: 'Yes, everything looks good. I only have a couple of minor suggestions.',
+        },
+        {
+          id: 'o4',
+          senderName: 'Harry Potter',
+          avatar: { initial: 'H', colorClass: 'bg-amber-600' },
+          time: '08:12 pm',
+          isOwnMessage: true,
+          text: 'Sure, send them over and I will take a look.',
         },
       ],
     },
@@ -155,5 +427,89 @@ export const mockContactDetails: Record<string, ContactDetails> = {
     languages: ['English', 'French'],
     localTime: 'Mar 04, 2026 10:20 PM',
     firstInteraction: 'Feb 24, 2026',
+  },
+
+  'chat-dianne': {
+    id: 'chat-dianne',
+    name: 'Dianne Russell',
+    title: 'Product Designer',
+    company: 'Closr CRM',
+    avatar: { initial: 'D', colorClass: 'bg-rose-400' },
+    workEmail: 'dianne.russell@example.com',
+    phone: '+44 20 7946 0182',
+    location: 'Manchester, United Kingdom',
+    languages: ['English'],
+    localTime: 'Mar 04, 2026 10:25 PM',
+    firstInteraction: 'Jan 18, 2026',
+  },
+
+  'chat-tony': {
+    id: 'chat-tony',
+    name: 'Tony Stark',
+    title: 'Head of Engineering',
+    company: 'Stark Industries',
+    avatar: { initial: 'T', colorClass: 'bg-amber-500' },
+    workEmail: 'tony.stark@example.com',
+    phone: '+1 212 555 0188',
+    location: 'New York, United States',
+    languages: ['English'],
+    localTime: 'Mar 04, 2026 05:25 PM',
+    firstInteraction: 'Feb 02, 2026',
+  },
+
+  'chat-jordan': {
+    id: 'chat-jordan',
+    name: 'Jordan Smith',
+    title: 'Project Manager',
+    company: 'Acme Corporation',
+    avatar: { initial: 'J', colorClass: 'bg-emerald-500' },
+    workEmail: 'jordan.smith@example.com',
+    phone: '+1 415 555 0142',
+    location: 'San Francisco, United States',
+    languages: ['English', 'Spanish'],
+    localTime: 'Mar 04, 2026 01:30 PM',
+    firstInteraction: 'Jan 12, 2026',
+  },
+
+  'chat-sarah': {
+    id: 'chat-sarah',
+    name: 'Sarah Wilson',
+    title: 'Product Manager',
+    company: 'Nova Labs',
+    avatar: { initial: 'S', colorClass: 'bg-violet-500' },
+    workEmail: 'sarah.wilson@example.com',
+    phone: '+1 646 555 0127',
+    location: 'New York, United States',
+    languages: ['English', 'German'],
+    localTime: 'Mar 04, 2026 04:30 PM',
+    firstInteraction: 'Feb 10, 2026',
+  },
+
+  'chat-emma': {
+    id: 'chat-emma',
+    name: 'Emma Watson',
+    title: 'UX Researcher',
+    company: 'Bright Labs',
+    avatar: { initial: 'E', colorClass: 'bg-indigo-500' },
+    workEmail: 'emma.watson@example.com',
+    phone: '+44 20 7946 0234',
+    location: 'London, United Kingdom',
+    languages: ['English', 'French'],
+    localTime: 'Mar 04, 2026 10:35 PM',
+    firstInteraction: 'Feb 05, 2026',
+  },
+
+  'chat-olivia': {
+    id: 'chat-olivia',
+    name: 'Olivia Martin',
+    title: 'Senior Business Analyst',
+    company: 'Vertex Solutions',
+    avatar: { initial: 'O', colorClass: 'bg-fuchsia-500' },
+    workEmail: 'olivia.martin@example.com',
+    phone: '+33 1 42 68 53 00',
+    location: 'Paris, France',
+    languages: ['English', 'French'],
+    localTime: 'Mar 04, 2026 11:40 PM',
+    firstInteraction: 'Jan 28, 2026',
   },
 };

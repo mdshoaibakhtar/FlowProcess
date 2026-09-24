@@ -9,7 +9,7 @@ export const MessageBubble = ({ message }: MessageBubbleProps) => {
   const { isOwnMessage } = message;
 
   return (
-    <div className={`flex flex-col gap-1 ${isOwnMessage ? 'items-end' : 'items-start'}`}>
+    <div className={`flex flex-col gap-1 ${isOwnMessage ? 'items-start' : 'items-end'}`}>
       <div
         className={`flex items-center gap-2 text-xs text-slate-400 ${
           isOwnMessage ? 'flex-row-reverse' : ''
@@ -19,9 +19,7 @@ export const MessageBubble = ({ message }: MessageBubbleProps) => {
         <span className='font-medium text-slate-500'>{message.senderName}</span>
       </div>
 
-      <div
-        className={`flex max-w-[70%] items-start gap-2 ${isOwnMessage ? 'flex-row-reverse' : ''}`}
-      >
+      <div className={`flex max-w-[70%] items-start gap-2 ${isOwnMessage ? 'flex-row' : ''}`}>
         <AvatarIcon avatar={message.avatar} size='sm' />
         <div
           className={`rounded-2xl px-4 py-3 text-sm leading-relaxed ${
