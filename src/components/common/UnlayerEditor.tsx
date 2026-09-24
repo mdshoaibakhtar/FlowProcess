@@ -1,6 +1,7 @@
 import { Download } from 'lucide-react';
 import { useRef } from 'react';
 import EmailEditor from 'react-email-editor';
+import templateJSON from '../../assets/template.json';
 
 const EmailBuilder = () => {
   const emailEditorRef = useRef(null);
@@ -8,10 +9,7 @@ const EmailBuilder = () => {
   // Triggered when the Unlayer editor is fully loaded
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onReady = (unlayer: any) => {
-    console.warn('Unlayer Editor is ready', unlayer);
-    // console.log('Unlayer Editor is ready', unlayer);
-    // You can load a design JSON here if you have saved templates
-    // unlayer.loadDesign(templateJson);
+    unlayer.loadDesign(templateJSON);
   };
 
   // const onLoad = () => {

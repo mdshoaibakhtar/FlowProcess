@@ -1,0 +1,443 @@
+{
+    "counters": {
+        "u_column": 7,
+        "u_row": 7,
+        "u_content_heading": 2,
+        "u_content_paragraph": 4,
+        "u_content_button": 1
+    },
+    "body": {
+        "id": "bhLfTZ0NJP",
+        "rows": [
+            {
+                "id": "mb0GW9CY9J",
+                "cells": [
+                    1
+                ],
+                "columns": [
+                    {
+                        "id": "1dWrfVMYdx",
+                        "contents": [
+                            {
+                                "id": "kUJaTRjL2H",
+                                "type": "heading",
+                                "values": {
+                                    "textJson": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"Welcome Aboard, {{first_name}}!\",\"type\":\"extended-text\",\"version\":1}],\"format\":\"\",\"indent\":0,\"type\":\"heading-paragraph\",\"version\":1,\"textFormat\":0,\"textStyle\":\"\"}],\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}",
+                                    "containerPadding": "10px",
+                                    "anchor": "",
+                                    "headingType": "h1",
+                                    "fontSize": "22px",
+                                    "color": "#ffffff",
+                                    "textAlign": "center",
+                                    "lineHeight": "140%",
+                                    "linkStyle": {
+                                        "inherit": true,
+                                        "linkColor": "#0000ee",
+                                        "linkHoverColor": "#0000ee",
+                                        "linkUnderline": true,
+                                        "linkHoverUnderline": true
+                                    },
+                                    "displayCondition": null,
+                                    "_styleGuide": null,
+                                    "_meta": {
+                                        "htmlID": "u_content_heading_2",
+                                        "htmlClassNames": "u_content_heading"
+                                    },
+                                    "selectable": true,
+                                    "draggable": true,
+                                    "duplicatable": true,
+                                    "deletable": true,
+                                    "hideable": true,
+                                    "locked": false,
+                                    "_languages": {},
+                                    "text": "<span><span>Welcome Aboard, {{first_name}}!</span></span>"
+                                }
+                            }
+                        ],
+                        "values": {
+                            "backgroundColor": "#4f46e5",
+                            "padding": "0px",
+                            "border": {},
+                            "borderRadius": "0px",
+                            "_meta": {
+                                "htmlID": "u_column_2",
+                                "htmlClassNames": "u_column"
+                            },
+                            "deletable": true,
+                            "locked": false
+                        }
+                    }
+                ],
+                "values": {
+                    "displayCondition": null,
+                    "columns": false,
+                    "_styleGuide": null,
+                    "backgroundColor": "",
+                    "columnsBackgroundColor": "",
+                    "backgroundImage": {
+                        "url": "",
+                        "fullWidth": true,
+                        "repeat": "no-repeat",
+                        "size": "custom",
+                        "position": "center"
+                    },
+                    "padding": "0px",
+                    "anchor": "",
+                    "_meta": {
+                        "htmlID": "u_row_2",
+                        "htmlClassNames": "u_row"
+                    },
+                    "selectable": true,
+                    "draggable": true,
+                    "duplicatable": true,
+                    "deletable": true,
+                    "hideable": true,
+                    "locked": false
+                }
+            },
+            {
+                "id": "dmGdZwezyl",
+                "cells": [
+                    1
+                ],
+                "columns": [
+                    {
+                        "id": "eLasmF6fcr",
+                        "contents": [
+                            {
+                                "id": "3_aNKuai2t",
+                                "type": "paragraph",
+                                "values": {
+                                    "textJson": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"Hi {{first_name}},\",\"type\":\"extended-text\",\"version\":1}],\"direction\":null,\"format\":\"\",\"indent\":0,\"type\":\"extended-paragraph\",\"version\":1,\"textFormat\":0,\"textStyle\":\"\",\"isInlineTool\":false},{\"children\":[],\"direction\":null,\"format\":\"\",\"indent\":0,\"type\":\"extended-paragraph\",\"version\":1,\"textFormat\":0,\"textStyle\":\"\",\"isInlineTool\":false},{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"We are thrilled to have you! Your account is all set up and ready to go. You’ve just taken the first step toward streamlining your workflow with us.\",\"type\":\"extended-text\",\"version\":1}],\"direction\":null,\"format\":\"\",\"indent\":0,\"type\":\"extended-paragraph\",\"version\":1,\"textFormat\":0,\"textStyle\":\"\",\"isInlineTool\":false},{\"children\":[],\"direction\":null,\"format\":\"\",\"indent\":0,\"type\":\"extended-paragraph\",\"version\":1,\"textFormat\":0,\"textStyle\":\"\",\"isInlineTool\":false},{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"To help you get started quickly, click the button below to explore your dashboard and launch your first project:\",\"type\":\"extended-text\",\"version\":1}],\"direction\":null,\"format\":\"\",\"indent\":0,\"type\":\"extended-paragraph\",\"version\":1,\"textFormat\":0,\"textStyle\":\"\",\"isInlineTool\":false}],\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}",
+                                    "containerPadding": "10px",
+                                    "anchor": "",
+                                    "fontSize": "14px",
+                                    "textAlign": "left",
+                                    "lineHeight": "140%",
+                                    "linkStyle": {
+                                        "inherit": true,
+                                        "linkColor": "#0000ee",
+                                        "linkHoverColor": "#0000ee",
+                                        "linkUnderline": true,
+                                        "linkHoverUnderline": true
+                                    },
+                                    "displayCondition": null,
+                                    "_styleGuide": null,
+                                    "_meta": {
+                                        "htmlID": "u_content_paragraph_2",
+                                        "htmlClassNames": "u_content_paragraph"
+                                    },
+                                    "selectable": true,
+                                    "draggable": true,
+                                    "duplicatable": true,
+                                    "deletable": true,
+                                    "hideable": true,
+                                    "locked": false,
+                                    "_languages": {},
+                                    "text": "<p style=\"margin: 0px; margin-block: 0px;\"><span>Hi {{first_name}},</span></p><p style=\"margin: 0px; margin-block: 0px;\"><br></p><p style=\"margin: 0px; margin-block: 0px;\"><span>We are thrilled to have you! Your account is all set up and ready to go. You’ve just taken the first step toward streamlining your workflow with us.</span></p><p style=\"margin: 0px; margin-block: 0px;\"><br></p><p style=\"margin: 0px; margin-block: 0px;\"><span>To help you get started quickly, click the button below to explore your dashboard and launch your first project:</span></p>"
+                                }
+                            }
+                        ],
+                        "values": {
+                            "backgroundColor": "",
+                            "padding": "0px",
+                            "border": {},
+                            "borderRadius": "0px",
+                            "_meta": {
+                                "htmlID": "u_column_5",
+                                "htmlClassNames": "u_column"
+                            },
+                            "deletable": true,
+                            "locked": false
+                        }
+                    }
+                ],
+                "values": {
+                    "displayCondition": null,
+                    "columns": false,
+                    "_styleGuide": null,
+                    "backgroundColor": "",
+                    "columnsBackgroundColor": "",
+                    "backgroundImage": {
+                        "url": "",
+                        "fullWidth": true,
+                        "repeat": "no-repeat",
+                        "size": "custom",
+                        "position": "center"
+                    },
+                    "padding": "0px",
+                    "anchor": "",
+                    "_meta": {
+                        "htmlID": "u_row_5",
+                        "htmlClassNames": "u_row"
+                    },
+                    "selectable": true,
+                    "draggable": true,
+                    "duplicatable": true,
+                    "deletable": true,
+                    "hideable": true,
+                    "locked": false
+                }
+            },
+            {
+                "id": "L8ytaKaQB-",
+                "cells": [
+                    1
+                ],
+                "columns": [
+                    {
+                        "id": "mlskAYpbU7",
+                        "contents": [
+                            {
+                                "id": "WDfc_1DIv7",
+                                "type": "button",
+                                "values": {
+                                    "textJson": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":1,\"mode\":\"normal\",\"style\":\"\",\"text\":\"Get Started\",\"type\":\"extended-text\",\"version\":1}],\"direction\":null,\"format\":\"\",\"indent\":0,\"type\":\"extended-paragraph\",\"version\":1,\"textFormat\":1,\"textStyle\":\"\",\"isInlineTool\":true}],\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}",
+                                    "href": {
+                                        "name": "web",
+                                        "attrs": {
+                                            "href": "{{href}}",
+                                            "target": "{{target}}"
+                                        },
+                                        "values": {
+                                            "href": "https://flowprocess.vercel.app/",
+                                            "target": "_blank"
+                                        }
+                                    },
+                                    "buttonColors": {
+                                        "color": "#FFFFFF",
+                                        "backgroundColor": "#4f46e5",
+                                        "hoverColor": "#FFFFFF",
+                                        "hoverBackgroundColor": "#0879A1"
+                                    },
+                                    "size": {
+                                        "autoWidth": true,
+                                        "width": "100%"
+                                    },
+                                    "fontSize": "14px",
+                                    "lineHeight": "120%",
+                                    "textAlign": "center",
+                                    "padding": "10px 20px",
+                                    "border": {},
+                                    "borderRadius": "4px",
+                                    "displayCondition": null,
+                                    "_styleGuide": null,
+                                    "containerPadding": "10px",
+                                    "anchor": "",
+                                    "_meta": {
+                                        "htmlID": "u_content_button_1",
+                                        "htmlClassNames": "u_content_button"
+                                    },
+                                    "selectable": true,
+                                    "draggable": true,
+                                    "duplicatable": true,
+                                    "deletable": true,
+                                    "hideable": true,
+                                    "locked": false,
+                                    "_languages": {},
+                                    "calculatedWidth": 115,
+                                    "calculatedHeight": 37,
+                                    "text": "<span><span style=\"font-weight: bold\">Get Started</span></span>"
+                                }
+                            }
+                        ],
+                        "values": {
+                            "backgroundColor": "",
+                            "padding": "0px",
+                            "border": {},
+                            "borderRadius": "0px",
+                            "_meta": {
+                                "htmlID": "u_column_6",
+                                "htmlClassNames": "u_column"
+                            },
+                            "deletable": true,
+                            "locked": false
+                        }
+                    }
+                ],
+                "values": {
+                    "displayCondition": null,
+                    "columns": false,
+                    "_styleGuide": null,
+                    "backgroundColor": "",
+                    "columnsBackgroundColor": "",
+                    "backgroundImage": {
+                        "url": "",
+                        "fullWidth": true,
+                        "repeat": "no-repeat",
+                        "size": "custom",
+                        "position": "center"
+                    },
+                    "padding": "0px",
+                    "anchor": "",
+                    "_meta": {
+                        "htmlID": "u_row_6",
+                        "htmlClassNames": "u_row"
+                    },
+                    "selectable": true,
+                    "draggable": true,
+                    "duplicatable": true,
+                    "deletable": true,
+                    "hideable": true,
+                    "locked": false
+                }
+            },
+            {
+                "id": "oU71nGjqo9",
+                "cells": [
+                    1
+                ],
+                "columns": [
+                    {
+                        "id": "UkQSZ3Z4qO",
+                        "contents": [
+                            {
+                                "id": "_PiGKNt5Yb",
+                                "type": "paragraph",
+                                "values": {
+                                    "textJson": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"If you have any questions or need a hand, just reply directly to this email our support team is always here to help.\",\"type\":\"extended-text\",\"version\":1}],\"direction\":null,\"format\":\"\",\"indent\":0,\"type\":\"extended-paragraph\",\"version\":1,\"textFormat\":0,\"textStyle\":\"\",\"isInlineTool\":false},{\"children\":[],\"direction\":null,\"format\":\"\",\"indent\":0,\"type\":\"extended-paragraph\",\"version\":1,\"textFormat\":0,\"textStyle\":\"\",\"isInlineTool\":false},{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"Cheers,\",\"type\":\"extended-text\",\"version\":1}],\"direction\":null,\"format\":\"\",\"indent\":0,\"type\":\"extended-paragraph\",\"version\":1,\"textFormat\":0,\"textStyle\":\"\",\"isInlineTool\":false},{\"children\":[{\"detail\":0,\"format\":1,\"mode\":\"normal\",\"style\":\"\",\"text\":\"The Team\",\"type\":\"extended-text\",\"version\":1}],\"direction\":null,\"format\":\"\",\"indent\":0,\"type\":\"extended-paragraph\",\"version\":1,\"textFormat\":1,\"textStyle\":\"\",\"isInlineTool\":false}],\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}",
+                                    "containerPadding": "10px",
+                                    "anchor": "",
+                                    "fontSize": "14px",
+                                    "textAlign": "left",
+                                    "lineHeight": "140%",
+                                    "linkStyle": {
+                                        "inherit": true,
+                                        "linkColor": "#0000ee",
+                                        "linkHoverColor": "#0000ee",
+                                        "linkUnderline": true,
+                                        "linkHoverUnderline": true
+                                    },
+                                    "displayCondition": null,
+                                    "_styleGuide": null,
+                                    "_meta": {
+                                        "htmlID": "u_content_paragraph_4",
+                                        "htmlClassNames": "u_content_paragraph"
+                                    },
+                                    "selectable": true,
+                                    "draggable": true,
+                                    "duplicatable": true,
+                                    "deletable": true,
+                                    "hideable": true,
+                                    "locked": false,
+                                    "_languages": {},
+                                    "text": "<p style=\"margin: 0px; margin-block: 0px;\"><span>If you have any questions or need a hand, just reply directly to this email our support team is always here to help.</span></p><p style=\"margin: 0px; margin-block: 0px;\"><br></p><p style=\"margin: 0px; margin-block: 0px;\"><span>Cheers,</span></p><p style=\"margin: 0px; margin-block: 0px;\"><span style=\"font-weight: bold\">The Team</span></p>"
+                                }
+                            }
+                        ],
+                        "values": {
+                            "backgroundColor": "",
+                            "padding": "0px",
+                            "border": {},
+                            "borderRadius": "0px",
+                            "_meta": {
+                                "htmlID": "u_column_7",
+                                "htmlClassNames": "u_column"
+                            },
+                            "deletable": true,
+                            "locked": false
+                        }
+                    }
+                ],
+                "values": {
+                    "displayCondition": null,
+                    "columns": false,
+                    "_styleGuide": null,
+                    "backgroundColor": "",
+                    "columnsBackgroundColor": "",
+                    "backgroundImage": {
+                        "url": "",
+                        "fullWidth": true,
+                        "repeat": "no-repeat",
+                        "size": "custom",
+                        "position": "center"
+                    },
+                    "padding": "0px",
+                    "anchor": "",
+                    "_meta": {
+                        "htmlID": "u_row_7",
+                        "htmlClassNames": "u_row"
+                    },
+                    "selectable": true,
+                    "draggable": true,
+                    "duplicatable": true,
+                    "deletable": true,
+                    "hideable": true,
+                    "locked": false
+                }
+            }
+        ],
+        "headers": [],
+        "footers": [],
+        "values": {
+            "_styleGuide": null,
+            "popupPosition": "center",
+            "popupDisplayDelay": 0,
+            "popupWidth": "600px",
+            "popupHeight": "auto",
+            "borderRadius": "10px",
+            "contentAlign": "center",
+            "contentVerticalAlign": "middle",
+            "contentWidth": 400,
+            "fontFamily": {
+                "label": "Arial",
+                "value": "arial,helvetica,sans-serif"
+            },
+            "textColor": "#000000",
+            "popupBackgroundColor": "#FFFFFF",
+            "popupBackgroundImage": {
+                "url": "",
+                "fullWidth": true,
+                "repeat": "no-repeat",
+                "size": "cover",
+                "position": "center",
+                "customPosition": [
+                    "50%",
+                    "50%"
+                ]
+            },
+            "popupOverlay_backgroundColor": "rgba(0, 0, 0, 0.1)",
+            "popupCloseButton_position": "top-right",
+            "popupCloseButton_backgroundColor": "#DDDDDD",
+            "popupCloseButton_iconColor": "#000000",
+            "popupCloseButton_borderRadius": "0px",
+            "popupCloseButton_margin": "0px",
+            "popupCloseButton_action": {
+                "name": "close_popup",
+                "attrs": {
+                    "onClick": "document.querySelector('.u-popup-container').style.display = 'none';"
+                }
+            },
+            "language": {},
+            "backgroundColor": "#F7F8F9",
+            "documentSize": "A4",
+            "documentOrientation": "portrait",
+            "documentMargin": "96px",
+            "preheaderText": "",
+            "linkStyle": {
+                "body": true,
+                "linkColor": "#0000ee",
+                "linkHoverColor": "#0000ee",
+                "linkUnderline": true,
+                "linkHoverUnderline": true
+            },
+            "backgroundImage": {
+                "url": "",
+                "fullWidth": true,
+                "repeat": "no-repeat",
+                "size": "custom",
+                "position": "center",
+                "customPosition": [
+                    "50%",
+                    "50%"
+                ]
+            },
+            "accessibilityTitle": "",
+            "_meta": {
+                "htmlID": "u_body",
+                "htmlClassNames": "u_body"
+            }
+        }
+    },
+    "schemaVersion": 27
+}
