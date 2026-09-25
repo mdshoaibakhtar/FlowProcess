@@ -60,3 +60,17 @@ export interface ContactDetails {
   localTime: string;
   firstInteraction: string;
 }
+
+// One entry on the integrations page. Comes straight off the API later —
+// GET /api/integrations should return Integration[] matching this shape.
+export interface Integration {
+  id: string;
+  name: string;
+  /** Absolute URL to a logo image (svg/png). */
+  logoUrl: string;
+  description: string;
+  /** Short helper text under the description, e.g. "Requires admin access". */
+  note?: string;
+  /** Connection state, if the page needs to show it (optional). */
+  status?: 'connected' | 'not_connected';
+}

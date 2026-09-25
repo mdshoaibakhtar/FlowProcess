@@ -1,0 +1,58 @@
+[
+  {
+    "id": "slack",
+    "name": "Slack",
+    "logoUrl": "https://logo.clearbit.com/slack.com",
+    "description": "Send and receive messages, and get notified about activity directly in Slack.",
+    "note": "Requires a Slack workspace admin to approve.",
+    "status": "not_connected"
+  },
+  {
+    "id": "ms-teams",
+    "name": "Microsoft Teams",
+    "logoUrl": "https://logo.clearbit.com/microsoft.com",
+    "description": "Bring conversations, calls, and notifications into your Teams channels.",
+    "note": "Works with Teams on Microsoft 365.",
+    "status": "not_connected"
+  },
+  {
+    "id": "keka",
+    "name": "Keka",
+    "logoUrl": "https://logo.clearbit.com/keka.com",
+    "description": "Sync employee records and attendance data with your Keka HR account.",
+    "note": "One-way sync, updates every 24 hours.",
+    "status": "connected"
+  },
+  {
+    "id": "twilio",
+    "name": "Twilio",
+    "logoUrl": "https://logo.clearbit.com/twilio.com",
+    "description": "Send SMS and voice notifications using your own Twilio number.",
+    "note": "You'll need a Twilio Account SID and Auth Token.",
+    "status": "not_connected"
+  },
+  {
+    "id": "chatgpt",
+    "name": "ChatGPT",
+    "logoUrl": "https://logo.clearbit.com/openai.com",
+    "description": "Use OpenAI models to draft replies and summarize conversations.",
+    "note": "Bring your own OpenAI API key.",
+    "status": "not_connected"
+  },
+  {
+    "id": "pinpoint",
+    "name": "Pinpoint",
+    "logoUrl": "https://logo.clearbit.com/pinpointhq.com",
+    "description": "Pull candidate and job pipeline data from Pinpoint ATS.",
+    "note": "Read-only access to hiring pipelines.",
+    "status": "not_connected"
+  },
+  {
+    "id": "aws",
+    "name": "AWS",
+    "logoUrl": "https://logo.clearbit.com/aws.amazon.com",
+    "description": "Store attachments and backups in your own S3 bucket.",
+    "note": "Requires an IAM role with S3 write access.",
+    "status": "not_connected"
+  }
+]
