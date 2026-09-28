@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import type { ChatFilter } from '../../../types';
 import ChatListItem from './ChatListItem';
 import SidebarSearch from './SidebarSearch';
@@ -12,7 +12,8 @@ interface SidebarProps {
 
 const ChatSidebar = ({ activeChatId, onSelectChat }: SidebarProps) => {
   const [filter, setFilter] = useState<ChatFilter>('all');
-  const { pinned, recent, counts, isLoading, error } = useChatList({
+  const [searchItem, setSearhcItem] = useState('');
+  const { recent, counts, isLoading, error } = useChatList({
     pinned: [],
     recent: [],
     counts: null,
@@ -22,10 +23,14 @@ const ChatSidebar = ({ activeChatId, onSelectChat }: SidebarProps) => {
     filter: 'all',
   });
 
+  const recentChats = useMemo(() => {
+    return recent.filter((eachChats) => eachChats?.name.toLocaleLowerCase().includes(searchItem));
+  }, [searchItem, recent]);
+
   return (
     <aside className='flex h-full w-80 shrink-0 flex-col border-r border-(--app-border)'>
       <div className='space-y-3 border-b border-slate-100 p-4'>
-        <SidebarSearch />
+        <SidebarSearch setSearhcItem={setSearhcItem} />
         <SidebarTabs activeFilter={filter} counts={counts} onChange={setFilter} />
       </div>
 
@@ -34,43 +39,45 @@ const ChatSidebar = ({ activeChatId, onSelectChat }: SidebarProps) => {
 
         {error && <p className='px-2 py-4 text-sm text-red-500'>{error}</p>}
 
-        {!isLoading && !error && (
+        {!isLoading && !error && recentChats.length > 0 && (
           <>
-            {pinned.length > 0 && (
-              <div className='mb-3'>
-                <p className='px-2 pb-1 text-xs font-medium uppercase tracking-wide text-slate-400'>
-                  Pinned
-                </p>
-                <div className='space-y-0.5'>
-                  {pinned.map((chat) => (
-                    <ChatListItem
-                      key={chat.id}
-                      chat={chat}
-                      isActive={chat.id === activeChatId}
-                      onSelect={onSelectChat}
-                    />
-                  ))}
-                </div>
+            <div className='mb-3'>
+              <p className='px-2 pb-1 text-xs font-medium uppercase tracking-wide text-slate-400'>
+                Pinned
+              </p>
+              <div className='space-y-0.5'>
+                {recentChats.map(
+                  (chat) =>
+                    chat.isPinned && (
+                      <ChatListItem
+                        key={chat.id}
+                        chat={chat}
+                        isActive={chat.id === activeChatId}
+                        onSelect={onSelectChat}
+                      />
+                    ),
+                )}
               </div>
-            )}
+            </div>
 
-            {recent.length > 0 && (
-              <div>
-                <p className='px-2 pb-1 text-xs font-medium uppercase tracking-wide text-slate-400'>
-                  Recent
-                </p>
-                <div className='space-y-0.5'>
-                  {recent.map((chat) => (
-                    <ChatListItem
-                      key={chat.id}
-                      chat={chat}
-                      isActive={chat.id === activeChatId}
-                      onSelect={onSelectChat}
-                    />
-                  ))}
-                </div>
+            <div>
+              <p className='px-2 pb-1 text-xs font-medium uppercase tracking-wide text-slate-400'>
+                Recent
+              </p>
+              <div className='space-y-0.5'>
+                {recentChats.map(
+                  (chat) =>
+                    !chat.isPinned && (
+                      <ChatListItem
+                        key={chat.id}
+                        chat={chat}
+                        isActive={chat.id === activeChatId}
+                        onSelect={onSelectChat}
+                      />
+                    ),
+                )}
               </div>
-            )}
+            </div>
           </>
         )}
       </div>

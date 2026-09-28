@@ -8,7 +8,7 @@ const Inbox = () => {
   const [showContactPanel, setShowContactPanel] = useState<boolean>(false);
   const [activeChatId, setActiveChatId] = useState<string>('chat-mike');
   return (
-    <div className='rounded-md border border-(--app-border) bg-(--surface-primary) flex p-0.5 h-[86vh]'>
+    <div className='rounded-lg border border-(--app-border) bg-(--surface-primary) flex p-0.5 h-[86vh]'>
       <ChatSidebar activeChatId={activeChatId} onSelectChat={(chatId) => setActiveChatId(chatId)} />
       <ChatWindow
         chatId={activeChatId}

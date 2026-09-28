@@ -46,12 +46,22 @@ export const mockPinnedChats: ChatListItemData[] = [
 
 export const mockRecentChats: ChatListItemData[] = [
   {
+    id: 'you',
+    name: 'Md Shoaib (You)',
+    avatar: { initial: 'MD', colorClass: 'bg-emerald-500' },
+    lastMessage: 'This is a friendly reminder that...',
+    time: '12:36',
+    unreadCount: 2,
+    isPinned: true,
+  },
+  {
     id: 'chat-jordan',
     name: 'Jordan Smith',
-    avatar: { initial: 'J', colorClass: 'bg-emerald-500' },
+    avatar: { initial: 'J', colorClass: 'bg-red-500' },
     lastMessage: 'This is a friendly reminder that...',
     time: '12:33',
     unreadCount: 2,
+    isPinned: true,
   },
   {
     id: 'chat-waker',
@@ -59,6 +69,7 @@ export const mockRecentChats: ChatListItemData[] = [
     avatar: { initial: 'W', colorClass: 'bg-slate-500' },
     lastMessage: "Hi! I'm currently working on the project...",
     time: '02:30',
+    isPinned: true,
   },
   {
     id: 'chat-henry',
