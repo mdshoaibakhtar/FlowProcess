@@ -12,6 +12,7 @@ import Workflows from '../pages/Workflows';
 import EmailTemplate from '../pages/templates/EmailTemplate';
 import NotFound from '../components/common/NotFound';
 import Integrations from '../pages/Integrations';
+import Logs from '../pages/Logs';
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +25,7 @@ export const router = createBrowserRouter([
       { path: 'inbox', element: <Inbox /> },
       { path: 'requests', element: <Requests /> },
       { path: 'users', element: <Users /> },
+      { path: 'logs', element: <Logs /> },
       { path: 'integrations', element: <Integrations /> },
       { path: 'settings', element: <Settings /> },
       { path: 'profile-settings', element: <ProfileSettings /> },

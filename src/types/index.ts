@@ -74,3 +74,33 @@ export interface Integration {
   /** Connection state, if the page needs to show it (optional). */
   status?: string;
 }
+
+export interface Logs {
+  id: string;
+  timestamp: string;
+  level: 'info' | 'warning' | 'error';
+  action: string;
+  message: string;
+  user: {
+    id: string;
+    name: string;
+    email?: string;
+  };
+  status: 'success' | 'failed' | 'warning';
+  integration?: {
+    id: string;
+    name: string;
+  };
+  performedBy?: {
+    id: string;
+    name: string;
+    email: string;
+  };
+  recordsProcessed?: number;
+  duration?: string;
+  error?: {
+    code: string;
+    message: string;
+  };
+  metadata?: Record<string, string | number>;
+}

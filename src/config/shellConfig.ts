@@ -91,9 +91,9 @@ export const roleShellConfig: Record<AppRole, RoleShellConfig> = {
       },
 
       {
-        id: 'audit-logs',
-        label: 'Audit Logs',
-        path: '/audit-logs',
+        id: 'logs',
+        label: 'Logs',
+        path: '/logs',
         icon: 'history',
         roles: ['admin'],
       },
