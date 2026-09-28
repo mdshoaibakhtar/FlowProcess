@@ -72,5 +72,5 @@ export interface Integration {
   /** Short helper text under the description, e.g. "Requires admin access". */
   note?: string;
   /** Connection state, if the page needs to show it (optional). */
-  status?: 'connected' | 'not_connected';
+  status?: string;
 }

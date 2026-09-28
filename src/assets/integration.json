@@ -2,7 +2,7 @@
   {
     "id": "slack",
     "name": "Slack",
-    "logoUrl": "https://logo.clearbit.com/slack.com",
+    "logoUrl": "https://cdn.mos.cms.futurecdn.net/SDDw7CnuoUGax6x9mTo7dd-1920-80.jpg",
     "description": "Send and receive messages, and get notified about activity directly in Slack.",
     "note": "Requires a Slack workspace admin to approve.",
     "status": "not_connected"
@@ -10,7 +10,7 @@
   {
     "id": "ms-teams",
     "name": "Microsoft Teams",
-    "logoUrl": "https://logo.clearbit.com/microsoft.com",
+    "logoUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/94/Microsoft_Office_Teams_%282019%E2%80%932025%29.svg/960px-Microsoft_Office_Teams_%282019%E2%80%932025%29.svg.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail",
     "description": "Bring conversations, calls, and notifications into your Teams channels.",
     "note": "Works with Teams on Microsoft 365.",
     "status": "not_connected"
@@ -18,7 +18,7 @@
   {
     "id": "keka",
     "name": "Keka",
-    "logoUrl": "https://logo.clearbit.com/keka.com",
+    "logoUrl": "https://play-lh.googleusercontent.com/sl2l77DGQm3hfxOdaw8yfjzYBeNcjQf6J9-IE-_7ajv1nJE4mZE23_nD2h3Ecbv_3kQrY1KpA3awKkCKQpnifg",
     "description": "Sync employee records and attendance data with your Keka HR account.",
     "note": "One-way sync, updates every 24 hours.",
     "status": "connected"
@@ -26,7 +26,7 @@
   {
     "id": "twilio",
     "name": "Twilio",
-    "logoUrl": "https://logo.clearbit.com/twilio.com",
+    "logoUrl": "https://www.svgrepo.com/show/354472/twilio-icon.svg",
     "description": "Send SMS and voice notifications using your own Twilio number.",
     "note": "You'll need a Twilio Account SID and Auth Token.",
     "status": "not_connected"
@@ -34,23 +34,23 @@
   {
     "id": "chatgpt",
     "name": "ChatGPT",
-    "logoUrl": "https://logo.clearbit.com/openai.com",
+    "logoUrl": "https://static.vecteezy.com/system/resources/previews/021/059/827/non_2x/chatgpt-logo-chat-gpt-icon-on-white-background-free-vector.jpg",
     "description": "Use OpenAI models to draft replies and summarize conversations.",
     "note": "Bring your own OpenAI API key.",
     "status": "not_connected"
   },
   {
-    "id": "pinpoint",
-    "name": "Pinpoint",
-    "logoUrl": "https://logo.clearbit.com/pinpointhq.com",
-    "description": "Pull candidate and job pipeline data from Pinpoint ATS.",
+    "id": "github",
+    "name": "GitHub",
+    "logoUrl": "https://cdn-icons-png.flaticon.com/256/25/25231.png",
+    "description": "Pull candidate and job pipeline data from ATS.",
     "note": "Read-only access to hiring pipelines.",
     "status": "not_connected"
   },
   {
     "id": "aws",
     "name": "AWS",
-    "logoUrl": "https://logo.clearbit.com/aws.amazon.com",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Amazon_Web_Services_2025.svg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original",
     "description": "Store attachments and backups in your own S3 bucket.",
     "note": "Requires an IAM role with S3 write access.",
     "status": "not_connected"

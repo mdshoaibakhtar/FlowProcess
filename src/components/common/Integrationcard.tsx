@@ -33,7 +33,7 @@ export const IntegrationCard = ({ integration, onClick }: IntegrationCardProps) 
   const isConnected = status === 'connected';
 
   return (
-    <div className='flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-4 transition-shadow hover:shadow-sm'>
+    <div className='flex flex-col w-[32%] justify-between rounded-xl border border-slate-200 bg-white p-4 transition-shadow hover:shadow-sm'>
       <div className='flex items-start justify-between gap-3'>
         <IntegrationLogo integration={integration} />
         {status && (
@@ -55,7 +55,7 @@ export const IntegrationCard = ({ integration, onClick }: IntegrationCardProps) 
 
       <button
         onClick={() => onClick?.(integration)}
-        className={`mt-4 w-full rounded-lg border px-3 py-2 text-sm font-medium transition-colors ${
+        className={`mt-4 w-full rounded-lg border px-3 py-2 text-sm font-medium transition-colors cursor-pointer ${
           isConnected
             ? 'border-slate-200 text-slate-600 hover:bg-slate-50'
             : 'border-indigo-200 bg-indigo-50 text-indigo-600 hover:bg-indigo-100'
